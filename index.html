@@ -271,7 +271,7 @@ function calc(){
     }
 
     detail+=`<div class="row"><span>光环 ${i+1}　${a.base.toFixed(2)}% 原始</span><strong>${conv?seal.toFixed(3)+'%（生命封印）':seal.toFixed(3)+'%'}</strong></div>
-<div class="row"><span>　本光环封印量</span>${conv?lifeActual+'（'+resourceRaw.toFixed(3)+'，向上取整）':manaActual+'（'+resourceRaw.toFixed(3)+'，向下取整）}</strong></div>
+<div class="row"><span>　本光环封印量</span>${conv?lifeActual+'（'+resourceRaw.toFixed(3)+'，向上取整）':manaActual+'（'+resourceRaw.toFixed(3)+'，向下取整）'}</strong></div>
 <div class="row"><span>　辅助：${names.length?names.join('、'):'无'}</span><span></span></div>
 <div class="row"><span>　魔力封印补偿</span><span class="compNormal">${fmtSigned(comp)}</span></div>
 <div class="row"><span>　　来源</span><span>${fmtParts(normalParts)}</span></div>
