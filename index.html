@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>哈秋 · 火炬工具｜魔力封印计算器</title><style>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>哈秋 · 火炬工具｜魔力封印计算器</title><meta name="description" content="哈秋 · 火炬工具｜火炬之光：无限魔力封印计算器，支持4个光环、辅助技能、独辟蹊径等参数计算。"><link rel="canonical" href="https://haq897.github.io/torchlight-tool/"><meta property="og:type" content="website"><meta property="og:site_name" content="哈秋 · 火炬工具"><meta property="og:title" content="哈秋 · 火炬工具｜魔力封印计算器"><meta property="og:description" content="火炬之光：无限魔力封印计算器，支持4个光环、辅助技能与独辟蹊径。"><meta property="og:url" content="https://haq897.github.io/torchlight-tool/"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="哈秋 · 火炬工具｜魔力封印计算器"><meta name="twitter:description" content="火炬之光：无限魔力封印计算器"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2320242a'/%3E%3Cpath d='M33 8c2 11-5 15-10 21-6 7-8 13-8 19 0 9 7 16 17 16s17-7 17-17c0-8-5-15-12-20 1 8-3 11-7 13 2-9-3-15-5-22-1-4 2-7 8-10z' fill='white'/%3E%3C/svg%3E"><style>
 *{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#20242a;font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}.wrap{max-width:1120px;margin:20px auto 54px;padding:0 16px}.title{font-size:28px;font-weight:800}.sub{color:#69717d;margin:4px 0 14px}.card{background:#fff;border:1px solid #e1e5e9;border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 2px 8px #00000008}h2{font-size:16px;margin:0 0 10px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.globalGrid{grid-template-columns:repeat(5,minmax(0,1fr)) minmax(320px,2.25fr);gap:9px;align-items:end}.globalGrid>div,.globalGrid>.switch{min-width:0}.globalGrid label{white-space:nowrap}.globalGrid input{height:38px}.globalGrid .switch{margin-top:0;white-space:nowrap;font-weight:600;width:100%;min-width:0;padding:0 12px;height:38px;border:1px solid #d9e0e7;border-radius:10px;background:linear-gradient(180deg,#fafbfd,#f3f6f9);overflow:hidden;display:flex;align-items:center;gap:8px;box-shadow:inset 0 1px 0 #fff}.globalHint{font-size:12px;color:#5f6975;cursor:help;display:block;min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}.globalInfoIcon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;min-width:15px;border:1px solid #aeb6c2;border-radius:50%;font-size:10px;font-weight:700;line-height:1;color:#68717c;background:#fff;cursor:help;margin-left:5px;vertical-align:middle}label{display:block;font-size:12px;color:#68717c;margin:0 0 5px}input,select{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;padding:0 9px;font-size:14px;background:#fff}button{border:0;border-radius:9px;padding:9px 13px;cursor:pointer;background:#20242a;color:#fff}.ghost{background:#eef0f3;color:#333}.switch{display:flex;gap:8px;align-items:center;margin-top:17px}.switch input{width:auto;height:auto}.hint{font-size:12px;color:#727a84;line-height:1.7;margin-top:7px}.auras{display:grid;grid-template-columns:1fr 1fr;gap:10px}.aura{border:1px solid #e0e4e9;border-radius:12px;padding:11px}.aura.off{opacity:.58;background:#fafafa}.auraToggle{display:flex;align-items:center;gap:8px}.auraToggle input{width:17px;height:17px}.disabledFields{pointer-events:none}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.n{font-weight:800}.small{font-size:12px;color:#7a828c}.support{display:grid;grid-template-columns:minmax(0,1fr) 128px 42px;gap:6px;align-items:end;margin-top:7px}.skillSelectWrap{display:flex;align-items:center;gap:6px;position:relative}.skillSelect{position:relative;flex:1;min-width:0}.skillTrigger{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;background:#fff;color:#20242a;padding:0 31px 0 8px;display:flex;align-items:center;gap:8px;text-align:left;font-size:14px;cursor:pointer;position:relative}.skillTrigger:hover{border-color:#bfc6ce}.skillTrigger:focus{outline:2px solid #b9d7ff;border-color:#76aef7}.skillTrigger .skillIcon{width:28px;height:28px;flex:0 0 28px}.skillChevron{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:10px;color:#707780;pointer-events:none}.skillMenu{position:absolute;left:0;right:0;top:43px;background:#fff;border:1px solid #d5dae0;border-radius:9px;box-shadow:0 8px 24px #00000018;padding:5px;z-index:50;max-height:260px;overflow:auto;display:none}.skillMenu.open{display:block}.skillOption{display:flex;align-items:center;gap:8px;width:100%;min-height:40px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:14px}.skillOption:hover{background:#f0f3f6}.skillOption.selected{background:#eaf2fb}.skillOption img{width:30px;height:30px;flex:0 0 30px;border-radius:6px;object-fit:cover;border:1px solid #dfe3e8;background:#f1f3f6}.skillOptionText{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.levelTop{display:flex;align-items:center;gap:6px;height:18px}.levelTop label{margin:0}.levelInputWrap{width:100%}.levelBox{position:relative;display:flex;align-items:center;width:100%;height:39px;border:1px solid #d9dde2;border-radius:9px;background:#fff;overflow:hidden}.levelBox:focus-within{outline:2px solid #b9d7ff;border-color:#76aef7}.levelBox .lv{width:100%;min-width:0;height:37px;border:0;border-radius:0;padding:0 58px 0 11px;background:transparent;font-size:14px;outline:none;appearance:textfield}.levelBox .lv::-webkit-inner-spin-button,.levelBox .lv::-webkit-outer-spin-button{appearance:none;margin:0}.stepper{position:absolute;right:31px;top:4px;width:20px;height:31px;display:flex;flex-direction:column;gap:1px}.stepper button{width:20px;height:15px;padding:0;border:0;border-radius:4px;background:#eef0f3;color:#555;font-size:10px;line-height:15px;cursor:pointer}.stepper button:hover{background:#e1e5e9}.pathBonus{position:absolute;right:7px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:24px;height:22px;padding:0;font-size:11px;font-weight:700;color:#68717c;white-space:nowrap;visibility:hidden;pointer-events:none}.pathBonus.on{visibility:visible}.x{width:42px;height:39px;background:#fff;color:#555;border:1px solid #ddd;padding:0;font-size:18px;line-height:1}.add{width:100%;margin-top:9px;background:#f0f2f5;color:#333}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#f7f8fa;border-radius:11px;padding:10px}.metric b{display:block;font-size:21px;margin-top:3px}.ok{color:#198754}.bad{color:#c62828}.detail{font-size:13px;line-height:1.75}.row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e2e5e9;padding:5px 0}.tag{display:inline-block;font-size:11px;padding:2px 6px;border-radius:5px;background:#eef3f8;margin-left:5px}.life{color:#9a6700}.note{font-size:12px;color:#747c86;line-height:1.7}.tools{display:flex;gap:8px;flex-wrap:wrap}.search{margin-bottom:8px}
 
 .skillTooltip{position:fixed;z-index:10000;display:none;max-width:330px;padding:10px 12px;border:1px solid #cfd6dd;border-radius:9px;background:rgba(27,31,36,.97);color:#fff;font-size:13px;line-height:1.6;box-shadow:0 10px 28px #00000030;pointer-events:none;white-space:pre-line}
@@ -23,8 +23,8 @@
 <div class="auras" id="auras"></div>
 <div class="card"><h2>魔力封印</h2><div class="summary"><div class="metric"><label>总魔力封印</label><b id="total">0.00%</b></div><div class="metric"><label>已封印魔力</label><b id="sealed">0</b></div><div class="metric"><label>剩余魔力（向上取整）</label><b id="remain">0</b></div><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="free">100.00%</b></div></div><h2 style="margin-top:18px">生命封印</h2><div class="summary"><div class="metric"><label>总生命封印</label><b id="lifeTotal" class="life">0.00%</b></div><div class="metric"><label>已封印生命</label><b id="lifeSealed" class="life">0</b></div><div class="metric"><label>剩余生命（向上取整）</label><b id="lifeRemain" class="life">0</b></div><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="lifeFree" class="life">100.00%</b></div></div><div id="status" class="statusBar ok">可以同时开启 4 个光环</div></div>
 <div class="card"><h2>逐项计算</h2><div id="detail" class="detail"></div></div>
-<div class="card"><div class="tools"><button class="ghost" id="clear">清空辅助</button><button class="ghost" id="reset">恢复默认</button></div></div></div>
-<div class="siteFooter"><div class="footerBrand">哈秋 · 火炬工具</div><div class="footerLinks"><a href="https://qm.qq.com/q/G8ZVQhfbC8" target="_blank" rel="noopener noreferrer">加入火炬群</a><a href="https://www.douyin.com/user/self?from_tab_name=main" target="_blank" rel="noopener noreferrer">抖音主页</a><a href="https://space.bilibili.com/534802?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">B站主页</a></div><div class="footerGroup">火炬群：248727188</div></div>
+<div class="card"><div class="tools"><button class="ghost" id="clear">清空辅助</button><button class="ghost" id="reset">恢复默认</button><button class="ghost" id="copyConfig">复制当前配置链接</button></div></div></div>
+<div class="siteFooter"><div class="footerBrand">哈秋 · 火炬工具</div><div class="footerLinks"><a href="https://qm.qq.com/q/G8ZVQhfbC8" target="_blank" rel="noopener noreferrer">加入火炬群</a><a href="https://v.douyin.com/06Udw1qc5PA/" target="_blank" rel="noopener noreferrer">抖音主页</a><a href="https://space.bilibili.com/534802?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">B站主页</a></div><div class="footerGroup">火炬群：248727188　·　数据更新时间：2026-10-07</div></div>
 <div class="brandMark">@哈秋</div>
 <script>
 const iconUrls={
@@ -220,5 +220,90 @@ function wireSkillPicker(r,s){
 document.addEventListener('click',()=>{document.querySelectorAll('.skillMenu.open').forEach(m=>m.classList.remove('open'));hideSkillTooltip()});
 function render(){const box=document.getElementById('auras');box.innerHTML='';auras.forEach((a,i)=>{const d=document.createElement('div');d.className=`aura ${a.on?'':'off'}`;d.innerHTML=`<div class="head"><label class="auraToggle"><input type="checkbox" class="on" ${a.on?'checked':''}><span class="n">光环 ${i+1}</span></label><span class="small">${a.on?'已开启':'未开启'}</span></div><div class="auraFields ${a.on?'':'disabledFields'}"><div><label>原始魔力保留 %</label><input class="base" type="number" min="0" max="100" step="0.1" value="${a.base}" ${a.on?'':'disabled'}></div><div class="supports"></div><button class="add" ${a.on&&a.supports.length<5?'':'disabled'}>＋ 添加辅助</button></div>`;const ss=d.querySelector('.supports');a.supports.forEach((s,j)=>{const r=document.createElement('div');r.className='support';r.innerHTML=`<div><label>辅助 ${j+1}</label><div class="skillSelectWrap">${renderSkillPicker(s)}</div></div><div><div class="levelTop"><label>等级</label></div><div class="levelInputWrap"><div class="levelBox"><input type="number" class="lv" min="1" max="40" value="${s.level}"><div class="stepper"><button type="button" class="up" aria-label="增加等级">▲</button><button type="button" class="down" aria-label="降低等级">▼</button></div><span class="pathBonus" title="独辟蹊径提供的辅助技能等级 +4">+4</span></div></div></div><button class="x">×</button>`;ss.appendChild(r);wireSkillPicker(r,s);const syncLv=()=>{const on=document.getElementById('path').checked;const b=r.querySelector('.pathBonus');b.className=`pathBonus ${on?'on':''}`};syncLv();r.querySelector('.lv').oninput=e=>{s.level=Math.max(1,Math.min(40,Number(e.target.value)||1));e.target.value=s.level;syncLv();calc()};const changeLevel=(delta)=>{s.level=Math.max(1,Math.min(40,(Number(s.level)||1)+delta));const inp=r.querySelector('.lv');inp.value=s.level;inp.dispatchEvent(new Event('input',{bubbles:true}))};r.querySelector('.up').onclick=()=>changeLevel(1);r.querySelector('.down').onclick=()=>changeLevel(-1);r.querySelector('.x').onclick=()=>{a.supports.splice(j,1);render();calc()}});d.querySelector('.on').onchange=e=>{a.on=e.target.checked;render();calc()};d.querySelector('.base').oninput=e=>{a.base=Number(e.target.value)||0;calc()};d.querySelector('.add').onclick=()=>{if(a.supports.length<5){a.supports.push({name:'',level:20});render();calc()}};box.appendChild(d)})}
 function calc(){const global=(+gear.value||0)+(+passive.value||0)+(+other.value||0),path=document.getElementById('path').checked,max=+maxMana.value||0,lifeMax=+document.getElementById('maxLife').value||0;let total=0,lifeTotal=0,detail='';auras.forEach((a,i)=>{if(!a.on){detail+=`<div class="row"><span>光环 ${i+1}</span><span>未开启</span></div>`;return}let mult=1,comp=global,conv=false,effects=0,names=[];a.supports.forEach(s=>{if(!s.name)return;const lv=(+s.level||1)+(path?4:0);const x=levelData(s.name,lv);if(x.conv)conv=true;comp+=x.comp;effects+=auraEffect(s.name,lv);names.push(`${s.name} Lv${lv}`);mult*=path?.95:(x.manaMult||1)});let seal=a.base*mult/(1+comp/100);total+=conv?0:seal;lifeTotal+=conv?seal:0;detail+=`<div class="row"><span>光环 ${i+1}　${a.base.toFixed(2)}% 原始</span><strong>${conv?seal.toFixed(3)+'%（生命封印）':seal.toFixed(3)+'%'}</strong></div><div class="row"><span>　辅助：${names.length?names.join('、'):'无'}</span><span></span></div><div class="row"><span>　封印补偿</span><span>${comp.toFixed(2)}%</span></div>${path&&names.length?`<div class="row"><span>　独辟蹊径辅助倍率</span><span>×${mult.toFixed(5)}</span></div>`:''}${effects?`<div class="row"><span>　光环效果（不计入魔力封印）</span><span>${effects.toFixed(2)}%</span></div>`:''}${conv?`<div class="row life"><span>　封印转化</span><span>该光环魔力封印 → 生命封印</span></div>`:''}`});const sealed=max*total/100,remain=max-sealed,lifeSealed=lifeMax*lifeTotal/100;document.getElementById('total').textContent=total.toFixed(2)+'%';document.getElementById('sealed').textContent=Math.floor(sealed);document.getElementById('remain').textContent=Math.ceil(remain);document.getElementById('free').textContent=(max>0?Math.ceil(Math.max(0,remain))/max*100:100).toFixed(2)+'%';document.getElementById('lifeTotal').textContent=lifeTotal.toFixed(2)+'%';document.getElementById('lifeSealed').textContent=Math.floor(lifeSealed);const lifeRemain=Math.max(0,lifeMax-lifeSealed);document.getElementById('lifeRemain').textContent=Math.ceil(lifeRemain);document.getElementById('lifeFree').textContent=(lifeMax>0?Math.ceil(lifeRemain)/lifeMax*100:100).toFixed(2)+'%';const st=document.getElementById('status');st.className=total<=100?'ok':'bad';st.textContent=total<=100?'可以同时开启 4 个光环':'魔力不足，无法同时开启 4 个光环';document.getElementById('detail').innerHTML=detail}
-[...document.querySelectorAll('#maxMana,#maxLife,#gear,#passive,#other')].forEach(x=>x.addEventListener('input',calc));document.getElementById('path').addEventListener('change',()=>{render();calc()});document.getElementById('clear').onclick=()=>{auras.forEach(a=>a.supports=Array.from({length:3},()=>({name:'',level:20})));render();calc()};document.getElementById('reset').onclick=()=>{auras[0]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'加速冷却',level:20}]};auras[1]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'',level:20}]};auras[2]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'',level:20}]};auras[3]={on:true,base:50,supports:[{name:'节流',level:20},{name:'封印转化',level:20},{name:'',level:20}]};maxMana.value=1000;document.getElementById('maxLife').value=5000;gear.value=0;passive.value=22;other.value=0;document.getElementById('path').checked=true;render();calc()};render();calc();
+[...document.querySelectorAll('#maxMana,#maxLife,#gear,#passive,#other')].forEach(x=>x.addEventListener('input',calc));document.getElementById('path').addEventListener('change',()=>{render();calc()});document.getElementById('clear').onclick=()=>{auras.forEach(a=>a.supports=Array.from({length:3},()=>({name:'',level:20})));render();calc()};document.getElementById('reset').onclick=()=>{auras[0]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'加速冷却',level:20}]};auras[1]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'',level:20}]};auras[2]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'',level:20}]};auras[3]={on:true,base:50,supports:[{name:'节流',level:20},{name:'封印转化',level:20},{name:'',level:20}]};maxMana.value=1000;document.getElementById('maxLife').value=5000;gear.value=0;passive.value=22;other.value=0;document.getElementById('path').checked=true;render();calc()};
+
+function encodeConfig(obj){
+  const bytes=new TextEncoder().encode(JSON.stringify(obj));
+  let binary='';
+  for(const b of bytes) binary+=String.fromCharCode(b);
+  return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function decodeConfig(str){
+  const base64=str.replace(/-/g,'+').replace(/_/g,'/');
+  const padded=base64+'='.repeat((4-base64.length%4)%4);
+  const binary=atob(padded);
+  const bytes=Uint8Array.from(binary,ch=>ch.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+function getConfigState(){
+  return {
+    maxMana:Number(document.getElementById('maxMana').value)||0,
+    maxLife:Number(document.getElementById('maxLife').value)||0,
+    gear:Number(document.getElementById('gear').value)||0,
+    passive:Number(document.getElementById('passive').value)||0,
+    other:Number(document.getElementById('other').value)||0,
+    path:document.getElementById('path').checked,
+    auras:auras.map(a=>({
+      on:!!a.on,
+      base:Number(a.base)||0,
+      supports:(a.supports||[]).map(s=>({name:s.name||'',level:Number(s.level)||1}))
+    }))
+  };
+}
+function applyConfigState(data){
+  if(!data||typeof data!=='object') return;
+  document.getElementById('maxMana').value=Math.max(0,Number(data.maxMana)||0);
+  document.getElementById('maxLife').value=Math.max(0,Number(data.maxLife)||0);
+  document.getElementById('gear').value=Number(data.gear)||0;
+  document.getElementById('passive').value=Number(data.passive)||0;
+  document.getElementById('other').value=Number(data.other)||0;
+  document.getElementById('path').checked=!!data.path;
+  if(Array.isArray(data.auras)){
+    for(let i=0;i<4;i++){
+      const s=data.auras[i];
+      if(!s) continue;
+      auras[i].on=!!s.on;
+      auras[i].base=Math.max(0,Math.min(100,Number(s.base)||0));
+      auras[i].supports=Array.isArray(s.supports)
+        ? s.supports.slice(0,5).map(x=>({name:relevant.includes(x?.name)?x.name:'',level:Math.max(1,Math.min(40,Number(x?.level)||1))}))
+        : [];
+    }
+  }
+}
+function loadConfigFromUrl(){
+  const code=new URL(location.href).searchParams.get('config');
+  if(!code) return false;
+  try{
+    applyConfigState(decodeConfig(code));
+    return true;
+  }catch(err){
+    console.warn('配置链接无法读取',err);
+    return false;
+  }
+}
+async function copyConfigLink(){
+  const url=new URL(location.href);
+  url.searchParams.set('config',encodeConfig(getConfigState()));
+  const link=url.toString();
+  const btn=document.getElementById('copyConfig');
+  try{
+    await navigator.clipboard.writeText(link);
+  }catch(err){
+    const ta=document.createElement('textarea');
+    ta.value=link;
+    ta.style.position='fixed';
+    ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+  }
+  const oldText=btn.textContent;
+  btn.textContent='已复制配置链接';
+  setTimeout(()=>{btn.textContent=oldText},1600);
+}
+document.getElementById('copyConfig').addEventListener('click',copyConfigLink);
+loadConfigFromUrl();
+render();
+calc();
 </script></body></html>
