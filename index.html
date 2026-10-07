@@ -401,31 +401,57 @@ function applyConfigState(data){
   }
 }
 
-/* 紧凑配置链接：比完整 JSON/Base64 链接短很多；同时兼容旧版 ?config= 链接。 */
+/* 分享配置：使用位压缩格式，显著缩短链接；同时兼容旧版 ?c= 和 ?config= 链接。 */
+const COMPACT_V2_BITS=316;
+
 function encodeCompactConfig(obj){
-  const globalPart=[
-    Number(obj.maxMana)||0,
-    Number(obj.maxLife)||0,
-    Number(obj.gear)||0,
-    Number(obj.passive)||0,
-    Number(obj.other)||0,
-    obj.path?1:0
-  ].join(',');
-  const auraPart=(obj.auras||[]).slice(0,4).map(a=>{
-    const on=a?.on?1:0;
-    const base10=Math.max(0,Math.min(1000,Math.round((Number(a?.base)||0)*10)));
-    const base36=base10.toString(36).padStart(2,'0');
-    const slots=(a?.supports||[]).slice(0,5).map(s=>{
-      const id=Math.max(0,relevant.indexOf(s?.name));
-      const skillId=(s?.name?String(id).padStart(2,'0'):'99');
-      const lv=Math.max(1,Math.min(40,Number(s?.level)||1)).toString(36).padStart(2,'0');
-      return skillId+lv;
-    }).join('');
-    return on+base36+slots;
-  }).join(';');
-  return globalPart+'|'+auraPart;
+  let value=0n;
+  const push=(n,bits)=>{
+    value=(value<<BigInt(bits))|BigInt(n);
+  };
+  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+  const encodeSignedTenth=(n)=>{
+    const v=Math.round(clamp(Number(n)||0,-409.5,409.5)*10);
+    return v<0?v+4096:v;
+  };
+
+  // 全局参数
+  push(clamp(Math.round(Number(obj.maxMana)||0),0,65535),16);
+  push(clamp(Math.round(Number(obj.maxLife)||0),0,65535),16);
+  push(encodeSignedTenth(obj.gear),13);
+  push(encodeSignedTenth(obj.passive),13);
+  push(encodeSignedTenth(obj.other),13);
+  push(obj.path?1:0,1);
+
+  // 4 个光环：开启状态 + 原始保留 + 5 个辅助（技能ID 4bit + 等级 6bit）
+  for(let i=0;i<4;i++){
+    const a=(obj.auras||[])[i]||{on:false,base:0,supports:[]};
+    push(a.on?1:0,1);
+    push(clamp(Math.round((Number(a.base)||0)*10),0,1023),10);
+    const supports=Array.isArray(a.supports)?a.supports:[];
+    for(let j=0;j<5;j++){
+      const slot=supports[j]||{};
+      const id=slot.name?relevant.indexOf(slot.name):15;
+      const skillId=(id>=0&&id<14)?id:15;
+      const level=slot.name?clamp(Math.round(Number(slot.level)||1),1,40)-1:0;
+      push(skillId,4);
+      push(level,6);
+    }
+  }
+
+  const padBits=(8-(COMPACT_V2_BITS%8))%8;
+  value<<=BigInt(padBits);
+  const bytes=new Uint8Array(Math.ceil(COMPACT_V2_BITS/8));
+  for(let i=bytes.length-1;i>=0;i--){
+    bytes[i]=Number(value&255n);
+    value>>=8n;
+  }
+  let binary='';
+  for(const b of bytes) binary+=String.fromCharCode(b);
+  return 'z'+btoa(binary).replace(/\\+/g,'-').replace(/\\//g,'_').replace(/=+$/,'');
 }
-function decodeCompactConfig(code){
+
+function decodeCompactConfigLegacy(code){
   const parts=code.split('|');
   if(parts.length<2) throw new Error('配置链接格式错误');
   const g=parts[0].split(',');
@@ -456,6 +482,58 @@ function decodeCompactConfig(code){
     data.auras.push({on,base:base10/10,supports});
   }
   return data;
+}
+
+function decodeCompactConfigV2(code){
+  if(!code.startsWith('z')) throw new Error('不是新版配置链接');
+  const base64=code.slice(1).replace(/-/g,'+').replace(/_/g,'/');
+  const padded=base64+'='.repeat((4-base64.length%4)%4);
+  const binary=atob(padded);
+  let value=0n;
+  for(let i=0;i<binary.length;i++) value=(value<<8n)|BigInt(binary.charCodeAt(i));
+  const padBits=(8-(COMPACT_V2_BITS%8))%8;
+  value>>=BigInt(padBits);
+  let pos=0;
+  const read=(bits)=>{
+    const shift=BigInt(COMPACT_V2_BITS-pos-bits);
+    const mask=(1n<<BigInt(bits))-1n;
+    const n=Number((value>>shift)&mask);
+    pos+=bits;
+    return n;
+  };
+  const decodeSignedTenth=(raw)=>{
+    const signed=raw>=2048?raw-4096:raw;
+    return signed/10;
+  };
+
+  const data={
+    maxMana:read(16),
+    maxLife:read(16),
+    gear:decodeSignedTenth(read(13)),
+    passive:decodeSignedTenth(read(13)),
+    other:decodeSignedTenth(read(13)),
+    path:read(1)===1,
+    auras:[]
+  };
+
+  for(let i=0;i<4;i++){
+    const on=read(1)===1;
+    const base=read(10)/10;
+    const supports=[];
+    for(let j=0;j<5;j++){
+      const skillId=read(4);
+      const level=read(6)+1;
+      if(skillId===15) continue;
+      if(skillId<0||skillId>=relevant.length) throw new Error('技能数据损坏');
+      supports.push({name:relevant[skillId],level});
+    }
+    data.auras.push({on,base,supports});
+  }
+  return data;
+}
+
+function decodeCompactConfig(code){
+  return code.startsWith('z')?decodeCompactConfigV2(code):decodeCompactConfigLegacy(code);
 }
 
 const STORAGE_KEY='haq897_torchlight_tool_config_v1';
@@ -498,7 +576,8 @@ async function copyResult(){
 }
 function loadConfigFromUrl(){
   const params=new URL(location.href).searchParams;
-  const compact=params.get('c');
+  const hash=new URL(location.href).hash;
+  const compact=params.get('c')||(hash.startsWith('#c=')?hash.slice(3):'');
   const legacy=params.get('config');
   const code=compact||legacy;
   if(!code) return false;
@@ -513,7 +592,8 @@ function loadConfigFromUrl(){
 async function copyConfigLink(){
   const url=new URL(location.href);
   url.searchParams.delete('config');
-  url.searchParams.set('c',encodeCompactConfig(getConfigState()));
+  url.searchParams.delete('c');
+  url.hash='c='+encodeCompactConfig(getConfigState());
   const link=url.toString();
   const btn=document.getElementById('copyConfig');
   try{
