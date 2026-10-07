@@ -1,5 +1,5 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f6f8"><title>哈秋 · 火炬工具｜魔力封印计算器</title><meta name="description" content="哈秋 · 火炬工具｜火炬之光：无限魔力封印计算器，支持4个光环、辅助技能、独辟蹊径等参数计算。"><link rel="canonical" href="https://haq897.github.io/torchlight-tool/"><meta property="og:type" content="website"><meta property="og:site_name" content="哈秋 · 火炬工具"><meta property="og:title" content="哈秋 · 火炬工具｜魔力封印计算器"><meta property="og:description" content="火炬之光：无限魔力封印计算器，支持4个光环、辅助技能与独辟蹊径。"><meta property="og:url" content="https://haq897.github.io/torchlight-tool/"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="哈秋 · 火炬工具｜魔力封印计算器"><meta name="twitter:description" content="火炬之光：无限魔力封印计算器"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2320242a'/%3E%3Cpath d='M33 8c2 11-5 15-10 21-6 7-8 13-8 19 0 9 7 16 17 16s17-7 17-17c0-8-5-15-12-20 1 8-3 11-7 13 2-9-3-15-5-22-1-4 2-7 8-10z' fill='white'/%3E%3C/svg%3E"><style>
-*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#20242a;font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}.wrap{max-width:1120px;margin:20px auto 54px;padding:0 16px}.title{font-size:28px;font-weight:800}.sub{color:#69717d;margin:4px 0 14px}.card{background:#fff;border:1px solid #e1e5e9;border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 2px 8px #00000008}h2{font-size:16px;margin:0 0 10px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.globalGrid{grid-template-columns:repeat(5,minmax(0,1fr)) minmax(320px,2.25fr);gap:9px;align-items:end}.globalGrid>div,.globalGrid>.switch{min-width:0}.globalGrid label{white-space:nowrap}.globalGrid input{height:38px}.globalGrid .switch{margin-top:0;white-space:nowrap;font-weight:600;width:100%;min-width:0;padding:0 12px;height:38px;border:1px solid #d9e0e7;border-radius:10px;background:linear-gradient(180deg,#fafbfd,#f3f6f9);overflow:hidden;display:flex;align-items:center;gap:8px;box-shadow:inset 0 1px 0 #fff}.globalHint{font-size:12px;color:#5f6975;cursor:help;display:block;min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}.globalInfoIcon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;min-width:15px;border:1px solid #aeb6c2;border-radius:50%;font-size:10px;font-weight:700;line-height:1;color:#68717c;background:#fff;cursor:help;margin-left:5px;vertical-align:middle}label{display:block;font-size:12px;color:#68717c;margin:0 0 5px}input,select{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;padding:0 9px;font-size:14px;background:#fff}button{border:0;border-radius:9px;padding:9px 13px;cursor:pointer;background:#20242a;color:#fff}.ghost{background:#eef0f3;color:#333}.switch{display:flex;gap:8px;align-items:center;margin-top:17px}.switch input{width:auto;height:auto}.hint{font-size:12px;color:#727a84;line-height:1.7;margin-top:7px}.auras{display:grid;grid-template-columns:1fr 1fr;gap:10px}.aura{border:1px solid #e0e4e9;border-radius:12px;padding:11px}.aura.off{opacity:.58;background:#fafafa}.auraToggle{display:flex;align-items:center;gap:8px}.auraToggle input{width:17px;height:17px}.disabledFields{pointer-events:none}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.n{font-weight:800}.small{font-size:12px;color:#7a828c}.support{display:grid;grid-template-columns:minmax(0,1fr) 128px 42px;gap:6px;align-items:end;margin-top:7px}.skillSelectWrap{display:flex;align-items:center;gap:6px;position:relative}.skillSelect{position:relative;flex:1;min-width:0}.skillTrigger{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;background:#fff;color:#20242a;padding:0 31px 0 8px;display:flex;align-items:center;gap:8px;text-align:left;font-size:14px;cursor:pointer;position:relative}.skillTrigger:hover{border-color:#bfc6ce}.skillTrigger:focus{outline:2px solid #b9d7ff;border-color:#76aef7}.skillTrigger .skillIcon{width:28px;height:28px;flex:0 0 28px}.skillChevron{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:10px;color:#707780;pointer-events:none}.skillMenu{position:absolute;left:0;right:0;top:43px;background:#fff;border:1px solid #d5dae0;border-radius:9px;box-shadow:0 8px 24px #00000018;padding:5px;z-index:50;max-height:260px;overflow:auto;display:none}.skillMenu.open{display:block}.skillOption{display:flex;align-items:center;gap:8px;width:100%;min-height:40px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:14px}.skillOption:hover{background:#f0f3f6}.skillOption.selected{background:#eaf2fb}.skillOption img{width:30px;height:30px;flex:0 0 30px;border-radius:6px;object-fit:cover;border:1px solid #dfe3e8;background:#f1f3f6}.skillOptionText{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.levelTop{display:flex;align-items:center;gap:6px;height:18px}.levelTop label{margin:0}.levelInputWrap{width:100%}.levelBox{position:relative;display:flex;align-items:center;width:100%;height:39px;border:1px solid #d9dde2;border-radius:9px;background:#fff;overflow:hidden}.levelBox:focus-within{outline:2px solid #b9d7ff;border-color:#76aef7}.levelBox .lv{width:100%;min-width:0;height:37px;border:0;border-radius:0;padding:0 58px 0 11px;background:transparent;font-size:14px;outline:none;appearance:textfield}.levelBox .lv::-webkit-inner-spin-button,.levelBox .lv::-webkit-outer-spin-button{appearance:none;margin:0}.stepper{position:absolute;right:31px;top:4px;width:20px;height:31px;display:flex;flex-direction:column;gap:1px}.stepper button{width:20px;height:15px;padding:0;border:0;border-radius:4px;background:#eef0f3;color:#555;font-size:10px;line-height:15px;cursor:pointer}.stepper button:hover{background:#e1e5e9}.pathBonus{position:absolute;right:7px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:24px;height:22px;padding:0;font-size:11px;font-weight:700;color:#68717c;white-space:nowrap;visibility:hidden;pointer-events:none}.pathBonus.on{visibility:visible}.x{width:42px;height:39px;background:#fff;color:#555;border:1px solid #ddd;padding:0;font-size:18px;line-height:1}.add{width:100%;margin-top:9px;background:#f0f2f5;color:#333}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#f7f8fa;border-radius:11px;padding:10px}.metric b{display:block;font-size:21px;margin-top:3px}.metric b.negative{color:#c62828}.compNormal{font-weight:650;color:#3f4b58}.compExtra{font-weight:700;color:#8a4b08}.extraKeyword{font-weight:700}.ok{color:#198754}.bad{color:#c62828}.detail{font-size:13px;line-height:1.75}.row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e2e5e9;padding:5px 0}.tag{display:inline-block;font-size:11px;padding:2px 6px;border-radius:5px;background:#eef3f8;margin-left:5px}.life{color:#9a6700}.note{font-size:12px;color:#747c86;line-height:1.7}.tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.tools button{min-height:39px;white-space:nowrap}.support{min-width:0}.search{margin-bottom:8px}.detailAura{border:1px solid #e0e4e9;border-radius:12px;padding:12px 13px;margin:8px 0;background:#fff}.detailAura.off{background:#fafafa;opacity:.62}.detailAuraHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}.detailAuraTitle{font-size:14px;font-weight:800}.detailAuraOriginal{font-size:12px;color:#7a828c}.detailResult{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:9px}.detailMain{font-size:14px;color:#5e6874}.detailMain strong{font-size:22px;color:#20242a;margin-left:5px}.detailResource{font-size:13px;font-weight:700}.detailLife{color:#9a6700}.detailChips{display:flex;flex-wrap:wrap;gap:6px;margin:7px 0 10px}.detailChip{display:inline-flex;align-items:center;padding:4px 8px;border-radius:7px;background:#f0f3f6;color:#3f4852;font-size:12px}.detailSection{margin-top:8px;padding-top:8px;border-top:1px dashed #e2e5e9}.detailSectionTitle{font-size:12px;font-weight:750;color:#69727d;margin-bottom:4px}.detailCalc{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;font-size:12px;line-height:1.7;color:#303741;word-break:break-all}.detailBreakdown{font-size:12px;line-height:1.7;color:#616b76}.detailBreakdown strong{color:#3d4650}.detailMuted{font-size:12px;color:#87909a}.detailTags{display:flex;flex-wrap:wrap;gap:12px;margin-top:7px;font-size:12px;color:#68717c}.detailTagStrong{font-weight:700;color:#3f4852}.detailTagLife{font-weight:700;color:#9a6700}@media(max-width:480px){.detailResult{gap:8px}.detailMain strong{font-size:20px}.detailAura{padding:11px}.detailCalc{font-size:11.5px}}
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#20242a;font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}.wrap{max-width:1120px;margin:20px auto 54px;padding:0 16px}.title{font-size:28px;font-weight:800}.sub{color:#69717d;margin:4px 0 14px}.card{background:#fff;border:1px solid #e1e5e9;border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 2px 8px #00000008}h2{font-size:16px;margin:0 0 10px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.globalGrid{grid-template-columns:repeat(5,minmax(0,1fr)) minmax(320px,2.25fr);gap:9px;align-items:end}.globalGrid>div,.globalGrid>.switch{min-width:0}.globalGrid label{white-space:nowrap}.globalGrid input{height:38px}.globalGrid .switch{margin-top:0;white-space:nowrap;font-weight:600;width:100%;min-width:0;padding:0 12px;height:38px;border:1px solid #d9e0e7;border-radius:10px;background:linear-gradient(180deg,#fafbfd,#f3f6f9);overflow:hidden;display:flex;align-items:center;gap:8px;box-shadow:inset 0 1px 0 #fff}.globalHint{font-size:12px;color:#5f6975;cursor:help;display:block;min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}.globalInfoIcon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;min-width:15px;border:1px solid #aeb6c2;border-radius:50%;font-size:10px;font-weight:700;line-height:1;color:#68717c;background:#fff;cursor:help;margin-left:5px;vertical-align:middle}label{display:block;font-size:12px;color:#68717c;margin:0 0 5px}input,select{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;padding:0 9px;font-size:14px;background:#fff}button{border:0;border-radius:9px;padding:9px 13px;cursor:pointer;background:#20242a;color:#fff}.ghost{background:#eef0f3;color:#333}.switch{display:flex;gap:8px;align-items:center;margin-top:17px}.switch input{width:auto;height:auto}.hint{font-size:12px;color:#727a84;line-height:1.7;margin-top:7px}.auras{display:grid;grid-template-columns:1fr 1fr;gap:10px}.aura{border:1px solid #e0e4e9;border-radius:12px;padding:11px}.aura.off{opacity:.58;background:#fafafa}.auraToggle{display:flex;align-items:center;gap:8px}.auraToggle input{width:17px;height:17px}.disabledFields{pointer-events:none}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.n{font-weight:800}.small{font-size:12px;color:#7a828c}.support{display:grid;grid-template-columns:minmax(0,1fr) 128px 42px;gap:6px;align-items:end;margin-top:7px}.skillSelectWrap{display:flex;align-items:center;gap:6px;position:relative}.skillSelect{position:relative;flex:1;min-width:0}.skillTrigger{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;background:#fff;color:#20242a;padding:0 31px 0 8px;display:flex;align-items:center;gap:8px;text-align:left;font-size:14px;cursor:pointer;position:relative}.skillTrigger:hover{border-color:#bfc6ce}.skillTrigger:focus{outline:2px solid #b9d7ff;border-color:#76aef7}.skillTrigger .skillIcon{width:28px;height:28px;flex:0 0 28px}.skillChevron{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:10px;color:#707780;pointer-events:none}.skillMenu{position:absolute;left:0;right:0;top:43px;background:#fff;border:1px solid #d5dae0;border-radius:9px;box-shadow:0 8px 24px #00000018;padding:5px;z-index:50;max-height:260px;overflow:auto;display:none}.skillMenu.open{display:block}.skillOption{display:flex;align-items:center;gap:8px;width:100%;min-height:40px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:14px}.skillOption:hover{background:#f0f3f6}.skillOption.selected{background:#eaf2fb}.skillOption img{width:30px;height:30px;flex:0 0 30px;border-radius:6px;object-fit:cover;border:1px solid #dfe3e8;background:#f1f3f6}.skillOptionText{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.levelTop{display:flex;align-items:center;gap:6px;height:18px}.levelTop label{margin:0}.levelInputWrap{width:100%}.levelBox{position:relative;display:flex;align-items:center;width:100%;height:39px;border:1px solid #d9dde2;border-radius:9px;background:#fff;overflow:hidden}.levelBox:focus-within{outline:2px solid #b9d7ff;border-color:#76aef7}.levelBox .lv{width:100%;min-width:0;height:37px;border:0;border-radius:0;padding:0 58px 0 11px;background:transparent;font-size:14px;outline:none;appearance:textfield}.levelBox .lv::-webkit-inner-spin-button,.levelBox .lv::-webkit-outer-spin-button{appearance:none;margin:0}.stepper{position:absolute;right:31px;top:4px;width:20px;height:31px;display:flex;flex-direction:column;gap:1px}.stepper button{width:20px;height:15px;padding:0;border:0;border-radius:4px;background:#eef0f3;color:#555;font-size:10px;line-height:15px;cursor:pointer}.stepper button:hover{background:#e1e5e9}.pathBonus{position:absolute;right:7px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:24px;height:22px;padding:0;font-size:11px;font-weight:700;color:#68717c;white-space:nowrap;visibility:hidden;pointer-events:none}.pathBonus.on{visibility:visible}.x{width:42px;height:39px;background:#fff;color:#555;border:1px solid #ddd;padding:0;font-size:18px;line-height:1}.add{width:100%;margin-top:9px;background:#f0f2f5;color:#333}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#f7f8fa;border-radius:11px;padding:10px}.metric b{display:block;font-size:21px;margin-top:3px}.metric b.negative{color:#c62828}.compNormal{font-weight:650;color:#3f4b58}.compExtra{font-weight:700;color:#8a4b08}.extraKeyword{font-weight:700}.ok{color:#198754}.bad{color:#c62828}.detail{font-size:13px;line-height:1.75}.row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e2e5e9;padding:5px 0}.tag{display:inline-block;font-size:11px;padding:2px 6px;border-radius:5px;background:#eef3f8;margin-left:5px}.life{color:#9a6700}.note{font-size:12px;color:#747c86;line-height:1.7}.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tools button{min-height:39px;white-space:nowrap}.support{min-width:0}.search{margin-bottom:8px}.detailAura{border:1px solid #e0e4e9;border-radius:12px;padding:12px 13px;margin:8px 0;background:#fff}.detailAura.off{background:#fafafa;opacity:.62}.detailAuraHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}.detailAuraTitle{font-size:14px;font-weight:800}.detailAuraOriginal{font-size:12px;color:#7a828c}.detailResult{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:9px}.detailMain{font-size:14px;color:#5e6874}.detailMain strong{font-size:22px;color:#20242a;margin-left:5px}.detailResource{font-size:13px;font-weight:700}.detailLife{color:#9a6700}.detailChips{display:flex;flex-wrap:wrap;gap:6px;margin:7px 0 10px}.detailChip{display:inline-flex;align-items:center;padding:4px 8px;border-radius:7px;background:#f0f3f6;color:#3f4852;font-size:12px}.detailSection{margin-top:8px;padding-top:8px;border-top:1px dashed #e2e5e9}.detailSectionTitle{font-size:12px;font-weight:750;color:#69727d;margin-bottom:4px}.detailCalc{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;font-size:12px;line-height:1.7;color:#303741;word-break:break-all}.detailBreakdown{font-size:12px;line-height:1.7;color:#616b76}.detailBreakdown strong{color:#3d4650}.detailMuted{font-size:12px;color:#87909a}.detailTags{display:flex;flex-wrap:wrap;gap:12px;margin-top:7px;font-size:12px;color:#68717c}.detailTagStrong{font-weight:700;color:#3f4852}.detailTagLife{font-weight:700;color:#9a6700}@media(max-width:480px){.detailResult{gap:8px}.detailMain strong{font-size:20px}.detailAura{padding:11px}.detailCalc{font-size:11.5px}}
 
 .skillTooltip{position:fixed;z-index:10000;display:none;max-width:330px;padding:10px 12px;border:1px solid #cfd6dd;border-radius:9px;background:rgba(27,31,36,.97);color:#fff;font-size:13px;line-height:1.6;box-shadow:0 10px 28px #00000030;pointer-events:none;white-space:pre-line}
 .skillTooltip .ttTitle{font-weight:800;margin-bottom:4px;color:#fff}
@@ -20,7 +20,7 @@
 @media(max-width:700px){.tools{grid-template-columns:repeat(2,minmax(0,1fr))}.tools button{min-width:0}.support{grid-template-columns:minmax(0,1fr) 104px 38px;gap:5px}}@media(max-width:480px){input,select{font-size:16px}.tools{gap:7px}.tools button{min-height:44px;padding-left:9px;padding-right:9px}.brandMark{right:9px;bottom:8px;font-size:10px}.support{grid-template-columns:minmax(0,1fr) 90px 40px}.skillTrigger{padding-left:6px;padding-right:25px;gap:5px;min-height:44px;height:44px}.skillTrigger .skillIcon{width:25px;height:25px;flex-basis:25px}.levelBox{height:44px}.levelBox .lv{padding-left:8px;padding-right:54px;height:42px}.siteFooter{margin-top:8px}}
 </style></head><body><div id="skillTooltip" class="skillTooltip"><div class="ttTitle"></div><div class="ttBody"></div></div><div class="wrap"><div class="title">魔力封印计算器</div><div class="sub">4 个光环｜只输入原始魔力保留｜最多 5 个辅助｜支持「独辟蹊径」｜默认辅助已按常见四光环配置设置</div>
 <div class="card"><h2>全局参数</h2><div class="grid globalGrid"><div><label>最大魔力</label><input id="maxMana" type="number" min="0" value="500"></div><div><label>最大生命</label><input id="maxLife" type="number" min="0" value="2500"></div><div><label>装备魔力封印补偿 %</label><input id="gear" type="number" value="0"></div><div><label>天赋 / 被动补偿 %</label><input id="passive" type="number" value="21.5"></div><div><label>其他补偿 %</label><input id="other" type="number" value="0"></div><label class="switch" style="align-self:end;margin:0 0 2px;overflow:hidden"><input id="path" type="checkbox" checked><span style="flex:0 0 auto;font-size:13px">独辟蹊径</span><span class="globalHint" title="独辟蹊径：辅助技能等级 +4；辅助技能魔力倍率固定为 95%。">（+4 辅助等级；倍率 95%）</span><span class="globalInfoIcon" title="独辟蹊径：辅助技能等级 +4；辅助技能魔力倍率固定为 95%。" aria-label="独辟蹊径说明">i</span></label></div></div>
-<div class="card"><div class="tools"><button class="ghost" id="reset">恢复默认</button><button class="ghost" id="clear">清空辅助</button><button class="ghost" id="copyConfig">分享配置</button><button class="ghost" id="copyResult">复制结果</button></div></div>
+<div class="card"><div class="tools"><button class="ghost" id="reset">恢复默认</button><button class="ghost" id="clear">清空辅助</button><button class="ghost" id="copyConfig">分享配置</button></div></div>
 <div class="auras" id="auras"></div>
 <div class="card"><h2>魔力封印</h2><div class="summary"><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="free">100.00%</b></div><div class="metric"><label>剩余魔力</label><b id="remain">0</b></div><div class="metric"><label>已封印魔力</label><b id="sealed">0</b></div><div class="metric"><label>总魔力封印</label><b id="total">0.00%</b></div></div><h2 style="margin-top:18px">生命封印</h2><div class="summary"><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="lifeFree" class="life">100.00%</b></div><div class="metric"><label>剩余生命</label><b id="lifeRemain" class="life">0</b></div><div class="metric"><label>已封印生命</label><b id="lifeSealed" class="life">0</b></div><div class="metric"><label>总生命封印</label><b id="lifeTotal" class="life">0.00%</b></div></div><div id="status" class="statusBar ok" aria-live="polite" aria-atomic="true">可以同时开启 4 个光环</div></div>
 <div class="card"><h2>逐项计算</h2><div id="detail" class="detail"></div></div>
@@ -401,13 +401,14 @@ function applyConfigState(data){
   }
 }
 
-/* 分享配置：使用位压缩格式，显著缩短链接；同时兼容旧版 ?c= 和 ?config= 链接。 */
+/* 分享配置：新版采用可变长度位压缩，常见配置比旧版更短；同时兼容 V2 与旧版链接。 */
 const COMPACT_V2_BITS=316;
 
-function encodeCompactConfig(obj){
-  let value=0n;
-  const push=(n,bits)=>{
-    value=(value<<BigInt(bits))|BigInt(n);
+function encodeCompactConfigV3(obj){
+  const bits=[];
+  const push=(n,count)=>{
+    const value=BigInt(n);
+    for(let i=count-1;i>=0;i--) bits.push(Number((value>>BigInt(i))&1n));
   };
   const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
   const encodeSignedTenth=(n)=>{
@@ -415,7 +416,7 @@ function encodeCompactConfig(obj){
     return v<0?v+4096:v;
   };
 
-  // 全局参数
+  // 全局参数：保持与 V2 相同精度
   push(clamp(Math.round(Number(obj.maxMana)||0),0,65535),16);
   push(clamp(Math.round(Number(obj.maxLife)||0),0,65535),16);
   push(encodeSignedTenth(obj.gear),13);
@@ -423,82 +424,49 @@ function encodeCompactConfig(obj){
   push(encodeSignedTenth(obj.other),13);
   push(obj.path?1:0,1);
 
-  // 4 个光环：开启状态 + 原始保留 + 5 个辅助（技能ID 4bit + 等级 6bit）
+  // 每个光环只编码实际存在的辅助：开启 + 原始保留 + 辅助数量 + [技能ID4bit + 等级5bit]*
   for(let i=0;i<4;i++){
     const a=(obj.auras||[])[i]||{on:false,base:0,supports:[]};
+    const supports=(Array.isArray(a.supports)?a.supports:[])
+      .filter(s=>s&&s.name&&relevant.includes(s.name))
+      .slice(0,5);
+
     push(a.on?1:0,1);
-    push(clamp(Math.round((Number(a.base)||0)*10),0,1023),10);
-    const supports=Array.isArray(a.supports)?a.supports:[];
-    for(let j=0;j<5;j++){
-      const slot=supports[j]||{};
-      const id=slot.name?relevant.indexOf(slot.name):15;
-      const skillId=(id>=0&&id<14)?id:15;
-      const level=slot.name?clamp(Math.round(Number(slot.level)||1),1,40)-1:0;
-      push(skillId,4);
-      push(level,6);
+    push(clamp(Math.round((Number(a.base)||0)*10),0,1000),10);
+    push(supports.length,3);
+
+    for(const slot of supports){
+      const id=relevant.indexOf(slot.name);
+      const level=clamp(Math.round(Number(slot.level)||1),1,40)-1;
+      push(id,4);
+      push(level,5);
     }
   }
 
-  const padBits=(8-(COMPACT_V2_BITS%8))%8;
-  value<<=BigInt(padBits);
-  const bytes=new Uint8Array(Math.ceil(COMPACT_V2_BITS/8));
-  for(let i=bytes.length-1;i>=0;i--){
-    bytes[i]=Number(value&255n);
-    value>>=8n;
+  const bytes=new Uint8Array(Math.ceil(bits.length/8));
+  for(let i=0;i<bits.length;i++){
+    bytes[Math.floor(i/8)] |= bits[i] << (7-(i%8));
   }
   let binary='';
   for(const b of bytes) binary+=String.fromCharCode(b);
-  return 'z'+btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  return 'y'+btoa(binary).replace(/\\+/g,'-').replace(/\\//g,'_').replace(/=+$/,'');
 }
 
-function decodeCompactConfigLegacy(code){
-  const parts=code.split('|');
-  if(parts.length<2) throw new Error('配置链接格式错误');
-  const g=parts[0].split(',');
-  const data={
-    maxMana:Number(g[0])||0,
-    maxLife:Number(g[1])||0,
-    gear:Number(g[2])||0,
-    passive:Number(g[3])||0,
-    other:Number(g[4])||0,
-    path:g[5]==='1',
-    auras:[]
-  };
-  const auraStrings=parts[1].split(';');
-  for(let i=0;i<4;i++){
-    const s=auraStrings[i]||'0'+'000';
-    const on=s[0]==='1';
-    const base10=parseInt(s.slice(1,3),36);
-    const supports=[];
-    for(let p=3;p+4<=s.length;p+=4){
-      const sid=s.slice(p,p+2);
-      const lvRaw=s.slice(p+2,p+4);
-      if(sid==='99') continue;
-      const id=parseInt(sid,36);
-      if(!Number.isInteger(id)||id<0||id>=relevant.length) continue;
-      const level=Math.max(1,Math.min(40,parseInt(lvRaw,36)||1));
-      supports.push({name:relevant[id],level});
-    }
-    data.auras.push({on,base:base10/10,supports});
-  }
-  return data;
-}
-
-function decodeCompactConfigV2(code){
-  if(!code.startsWith('z')) throw new Error('不是新版配置链接');
+function decodeCompactConfigV3(code){
+  if(!code.startsWith('y')) throw new Error('不是新版配置链接');
   const base64=code.slice(1).replace(/-/g,'+').replace(/_/g,'/');
   const padded=base64+'='.repeat((4-base64.length%4)%4);
   const binary=atob(padded);
-  let value=0n;
-  for(let i=0;i<binary.length;i++) value=(value<<8n)|BigInt(binary.charCodeAt(i));
-  const padBits=(8-(COMPACT_V2_BITS%8))%8;
-  value>>=BigInt(padBits);
+  const bits=[];
+  for(let i=0;i<binary.length;i++){
+    const b=binary.charCodeAt(i);
+    for(let j=7;j>=0;j--) bits.push((b>>j)&1);
+  }
   let pos=0;
-  const read=(bits)=>{
-    const shift=BigInt(COMPACT_V2_BITS-pos-bits);
-    const mask=(1n<<BigInt(bits))-1n;
-    const n=Number((value>>shift)&mask);
-    pos+=bits;
+  const read=(count)=>{
+    if(pos+count>bits.length) throw new Error('配置数据不完整');
+    let n=0;
+    for(let i=0;i<count;i++) n=(n<<1)|bits[pos++];
     return n;
   };
   const decodeSignedTenth=(raw)=>{
@@ -519,11 +487,12 @@ function decodeCompactConfigV2(code){
   for(let i=0;i<4;i++){
     const on=read(1)===1;
     const base=read(10)/10;
+    const count=read(3);
+    if(count>5) throw new Error('辅助数量异常');
     const supports=[];
-    for(let j=0;j<5;j++){
+    for(let j=0;j<count;j++){
       const skillId=read(4);
-      const level=read(6)+1;
-      if(skillId===15) continue;
+      const level=read(5)+1;
       if(skillId<0||skillId>=relevant.length) throw new Error('技能数据损坏');
       supports.push({name:relevant[skillId],level});
     }
@@ -533,7 +502,9 @@ function decodeCompactConfigV2(code){
 }
 
 function decodeCompactConfig(code){
-  return code.startsWith('z')?decodeCompactConfigV2(code):decodeCompactConfigLegacy(code);
+  if(code.startsWith('y')) return decodeCompactConfigV3(code);
+  if(code.startsWith('z')) return decodeCompactConfigV2(code);
+  return decodeCompactConfigLegacy(code);
 }
 
 const STORAGE_KEY='haq897_torchlight_tool_config_v1';
@@ -549,35 +520,10 @@ function loadLocalConfig(){
     return true;
   }catch(err){console.warn('无法读取本地配置',err);return false;}
 }
-async function copyResult(){
-  const text=[
-    '哈秋 · 火炬工具｜魔力封印计算器',
-    '魔力封印：'+document.getElementById('total').textContent,
-    '已封印魔力：'+document.getElementById('sealed').textContent,
-    '剩余魔力：'+document.getElementById('remain').textContent,
-    '可用比例：'+document.getElementById('free').textContent,
-    '生命封印：'+document.getElementById('lifeTotal').textContent,
-    '已封印生命：'+document.getElementById('lifeSealed').textContent,
-    '剩余生命：'+document.getElementById('lifeRemain').textContent,
-    '生命可用比例：'+document.getElementById('lifeFree').textContent,
-    document.getElementById('status').textContent
-  ].join('\\n');
-  const btn=document.getElementById('copyResult');
-  const oldText=btn.textContent;
-  try{
-    if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);}
-    else{
-      const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
-      document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
-    }
-    btn.textContent='已复制结果';
-  }catch(err){btn.textContent='复制失败';}
-  setTimeout(()=>{btn.textContent=oldText},1600);
-}
 function loadConfigFromUrl(){
   const params=new URL(location.href).searchParams;
   const hash=new URL(location.href).hash;
-  const compact=params.get('c')||(hash.startsWith('#z')?hash.slice(1):'')||(hash.startsWith('#c=')?hash.slice(3):'');
+  const compact=params.get('c')||(hash.startsWith('#y')||hash.startsWith('#z')?hash.slice(1):'')||(hash.startsWith('#c=')?hash.slice(3):'');
   const legacy=params.get('config');
   const code=compact||legacy;
   if(!code) return false;
@@ -593,7 +539,7 @@ async function copyConfigLink(){
   const url=new URL(location.href);
   url.searchParams.delete('config');
   url.searchParams.delete('c');
-  url.hash=encodeCompactConfig(getConfigState());
+  url.hash=encodeCompactConfigV3(getConfigState());
   const link=url.toString();
   const btn=document.getElementById('copyConfig');
   try{
@@ -613,8 +559,8 @@ async function copyConfigLink(){
   setTimeout(()=>{btn.textContent=oldText},1600);
 }
 
+
 document.getElementById('copyConfig').addEventListener('click',copyConfigLink);
-document.getElementById('copyResult').addEventListener('click',copyResult);
 loadLocalConfig();
 const hasUrlConfig=loadConfigFromUrl();
 render();
