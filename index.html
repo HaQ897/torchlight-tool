@@ -81,9 +81,7 @@ function skillTooltipText(name,baseLv,path){
     case '封印转化':
       {const c=lv<=21?-70+.25*(lv-1):-65+.75*(lv-21);
        lines.push(`额外魔力封印补偿：${n1(c)}%`);
-       lines.push(lv<=21?'每级 +0.25 个百分点（Lv1:-70% → Lv21:-65%）':'每级 +0.75 个百分点（Lv21:-65% → Lv41:-50%）');
-       lines.push('被辅助技能的魔力封印被替代为生命封印');
-       lines.push('编年史：Lv1:-70% · Lv21:-65% · Lv41:-50%');}
+       lines.push('魔力封印 → 生命封印');}
       break;
         case '精密 封印转化':
       {const c=lv<=21?-60+.5*(lv-1):-50+.25*(lv-21);
