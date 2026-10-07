@@ -233,8 +233,9 @@ function calc(){
       comp+=x.comp;
 
       if(Math.abs(x.extraComp||0)>1e-9){
-        extraOps.push(x.extraComp);
-        extraParts.push({label:displayName(s.name)+' Lv'+lv,value:x.extraComp});
+        const detailExtra=(x.conv&&s.name==='封印转化')?-67.25:x.extraComp;
+        extraOps.push(detailExtra);
+        extraParts.push({label:displayName(s.name)+' Lv'+lv,value:detailExtra});
       }
 
       if(Math.abs(x.comp||0)>1e-9){
