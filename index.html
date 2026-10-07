@@ -79,10 +79,10 @@ function skillTooltipText(name,baseLv,path){
       lines.push('技能范围：+100%');
       break;
     case '封印转化':
-      {const c=lv<=20?-70+.25*(lv-1):-65+.25*(lv-21);
-       // 编年史 Lv21 为 -65%，Lv22 起每级 +0.25 个百分点
-       if(lv>=21){lines=[lvLine,`额外魔力封印补偿：${n1(lv===21?-65:-65+.25*(lv-21))}%`];}
-       else lines.push(`额外魔力封印补偿：${n1(c)}%`);
+      {const c=lv<=21?-70+.25*(lv-1):-65+.75*(lv-21);
+       // 与实际计算一致：Lv21=-65%，Lv22=-64.25%，Lv23=-63.5%
+       lines.push('额外魔力封印补偿：'+n1(c)+'%');
+       lines.push('实际倍率：(100%'+(c<0?'-':'+')+Math.abs(c).toFixed(1)+'%) = '+n1(100+c)+'%');
        lines.push('魔力封印 → 生命封印');}
       break;
     case '精密 封印转化':
@@ -270,9 +270,14 @@ function calc(){
       manaSealedTotal+=manaActual;
     }
 
-    const denominator=(1+comp/100)*extraDenominator;
-    const formula=`${a.base.toFixed(2)}% × ${mult.toFixed(5)} ÷ ${denominator.toFixed(5)} = ${seal.toFixed(3)}%`;
-    const resourceMax=conv?lifeMax:max;
+    const normalFactor=(100+comp).toFixed(2)+'%';
+    const extraFactors=extraOps.map(v=>(100+v).toFixed(2)+'%');
+    const pathFactors=path&&names.length?Array.from({length:names.length},()=> '95.00%'):[];
+    const formulaParts=[a.base.toFixed(2)+'%','÷',normalFactor];
+    extraFactors.forEach(f=>formulaParts.push('÷',f));
+    pathFactors.forEach(f=>formulaParts.push('×',f));
+    formulaParts.push('=',seal.toFixed(3)+'%');
+    const formula=formulaParts.join(' ');    const resourceMax=conv?lifeMax:max;
     const resourceActual=conv?lifeActual:manaActual;
     const resourceLabel=conv?'生命':'魔力';
     const breakdown=fmtParts(normalParts);
@@ -298,9 +303,9 @@ function calc(){
 <div class="detailSection">
   <div class="detailSectionTitle">魔力封印补偿</div>
   <div class="detailBreakdown"><strong>${fmtSigned(comp)}</strong>${breakdown!=='无'?`（${escapeHtml(breakdown)}）`:''}</div>
-  ${extraBreakdown?`<div class="detailBreakdown"><strong>额外补偿（乘算）</strong> ${escapeHtml(extraText)}（${escapeHtml(extraBreakdown)}）</div>`:''}
+  ${extraBreakdown?extraOps.map((v,idx)=>`<div class="detailBreakdown"><strong>额外补偿 ${idx+1}</strong> ${escapeHtml(extraParts[idx]?.label||'')}：${v<0?`(100%${v.toFixed(2)}%) = ${(100+v).toFixed(2)}%`:v.toFixed(2)+'%'}</div>`).join(''):''}
 </div>
-${path&&names.length?`<div class="detailTags"><span class="detailTagStrong">独辟蹊径倍率 ×${mult.toFixed(5)}</span></div>`:''}
+${path&&names.length?`<div class="detailTags"><span class="detailTagStrong">独辟蹊径：每个辅助 ×95.00%</span></div>`:''}
 ${effects?`<div class="detailTags"><span>光环效果（不计入魔力封印） <strong>${effects.toFixed(2)}%</strong></span></div>`:''}
 ${conv?`<div class="detailTags"><span class="detailTagLife">封印转化：魔力封印 → 生命封印</span></div>`:''}
 ${resourceMax>0?`<div class="detailMuted" style="margin-top:7px">原始封印量：${resourceRaw.toFixed(3)} / ${resourceMax}</div>`:''}
