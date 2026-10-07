@@ -577,7 +577,7 @@ async function copyResult(){
 function loadConfigFromUrl(){
   const params=new URL(location.href).searchParams;
   const hash=new URL(location.href).hash;
-  const compact=params.get('c')||(hash.startsWith('#c=')?hash.slice(3):'');
+  const compact=params.get('c')||(hash.startsWith('#z')?hash.slice(1):'')||(hash.startsWith('#c=')?hash.slice(3):'');
   const legacy=params.get('config');
   const code=compact||legacy;
   if(!code) return false;
@@ -593,7 +593,7 @@ async function copyConfigLink(){
   const url=new URL(location.href);
   url.searchParams.delete('config');
   url.searchParams.delete('c');
-  url.hash='c='+encodeCompactConfig(getConfigState());
+  url.hash=encodeCompactConfig(getConfigState());
   const link=url.toString();
   const btn=document.getElementById('copyConfig');
   try{
