@@ -401,8 +401,109 @@ function applyConfigState(data){
   }
 }
 
-/* 分享配置：新版采用可变长度位压缩，常见配置比旧版更短；同时兼容 V2 与旧版链接。 */
-const COMPACT_V2_BITS=316;
+/* 分享配置：x 版位压缩。常见 4 光环 / 9 辅助约 36 个编码字符；保留 y、z 旧版解码兼容。 */
+const COMPACT_V4_BITS=215;
+
+function bytesToBase64Url(bytes){
+  let binary='';
+  for(const b of bytes) binary+=String.fromCharCode(b);
+  return btoa(binary).split('+').join('-').split('/').join('_').replace(/=+$/,'');
+}
+function base64UrlToBinary(code){
+  const base64=code.replace(/-/g,'+').replace(/_/g,'/');
+  const padded=base64+'='.repeat((4-base64.length%4)%4);
+  return atob(padded);
+}
+
+function encodeCompactConfigV4(obj){
+  const bits=[];
+  const push=(n,count)=>{
+    const value=BigInt(n);
+    for(let i=count-1;i>=0;i--) bits.push(Number((value>>BigInt(i))&1n));
+  };
+  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+  const encodeSignedTenth=(n)=>{
+    const v=Math.round(clamp(Number(n)||0,-204.8,204.7)*10);
+    return v<0?v+4096:v;
+  };
+
+  push(clamp(Math.round(Number(obj.maxMana)||0),0,65535),16);
+  push(clamp(Math.round(Number(obj.maxLife)||0),0,65535),16);
+  push(encodeSignedTenth(obj.gear),12);
+  push(encodeSignedTenth(obj.passive),12);
+  push(encodeSignedTenth(obj.other),12);
+  push(obj.path?1:0,1);
+
+  for(let i=0;i<4;i++){
+    const a=(obj.auras||[])[i]||{on:false,base:0,supports:[]};
+    const supports=(Array.isArray(a.supports)?a.supports:[])
+      .filter(s=>s&&s.name&&relevant.includes(s.name))
+      .slice(0,5);
+
+    push(a.on?1:0,1);
+    push(clamp(Math.round((Number(a.base)||0)*10),0,1000),10);
+    push(supports.length,3);
+
+    for(const slot of supports){
+      const id=relevant.indexOf(slot.name);
+      const level=clamp(Math.round(Number(slot.level)||1),1,40)-1;
+      push(id,4);
+      push(level,6);
+    }
+  }
+
+  const bytes=new Uint8Array(27);
+  for(let i=0;i<bits.length;i++) bytes[Math.floor(i/8)]|=bits[i]<<(7-(i%8));
+  return 'x'+bytesToBase64Url(bytes);
+}
+
+function decodeCompactConfigV4(code){
+  if(!code.startsWith('x')) throw new Error('不是 x 版配置链接');
+  const binary=base64UrlToBinary(code.slice(1));
+  if(binary.length!==27) throw new Error('配置数据长度异常');
+  const bits=[];
+  for(let i=0;i<binary.length;i++){
+    const b=binary.charCodeAt(i);
+    for(let j=7;j>=0;j--) bits.push((b>>j)&1);
+  }
+  let pos=0;
+  const read=(count)=>{
+    if(pos+count>COMPACT_V4_BITS) throw new Error('配置数据不完整');
+    let n=0;
+    for(let i=0;i<count;i++) n=(n<<1)|bits[pos++];
+    return n;
+  };
+  const decodeSignedTenth=(raw)=>{
+    const signed=raw>=2048?raw-4096:raw;
+    return signed/10;
+  };
+
+  const data={
+    maxMana:read(16),
+    maxLife:read(16),
+    gear:decodeSignedTenth(read(12)),
+    passive:decodeSignedTenth(read(12)),
+    other:decodeSignedTenth(read(12)),
+    path:read(1)===1,
+    auras:[]
+  };
+
+  for(let i=0;i<4;i++){
+    const on=read(1)===1;
+    const base=read(10)/10;
+    const count=read(3);
+    if(count>5) throw new Error('辅助数量异常');
+    const supports=[];
+    for(let j=0;j<count;j++){
+      const skillId=read(4);
+      const level=read(6)+1;
+      if(skillId<0||skillId>=relevant.length) throw new Error('技能数据损坏');
+      supports.push({name:relevant[skillId],level});
+    }
+    data.auras.push({on,base,supports});
+  }
+  return data;
+}
 
 function encodeCompactConfigV3(obj){
   const bits=[];
@@ -501,6 +602,7 @@ function decodeCompactConfigV3(code){
   return data;
 }
 
+
 function decodeCompactConfigLegacy(code){
   const parts=code.split('|');
   if(parts.length<2) throw new Error('配置链接格式错误');
@@ -583,6 +685,7 @@ function decodeCompactConfigV2(code){
 }
 
 function decodeCompactConfig(code){
+  if(code.startsWith('x')) return decodeCompactConfigV4(code);
   if(code.startsWith('y')) return decodeCompactConfigV3(code);
   if(code.startsWith('z')) return decodeCompactConfigV2(code);
   return decodeCompactConfigLegacy(code);
@@ -620,7 +723,7 @@ async function copyConfigLink(){
   const url=new URL(location.href);
   url.searchParams.delete('config');
   url.searchParams.delete('c');
-  url.hash=encodeCompactConfigV3(getConfigState());
+  url.hash=encodeCompactConfigV4(getConfigState());
   const link=url.toString();
   const btn=document.getElementById('copyConfig');
   try{
