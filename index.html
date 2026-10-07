@@ -501,6 +501,87 @@ function decodeCompactConfigV3(code){
   return data;
 }
 
+function decodeCompactConfigLegacy(code){
+  const parts=code.split('|');
+  if(parts.length<2) throw new Error('配置链接格式错误');
+  const g=parts[0].split(',');
+  const data={
+    maxMana:Number(g[0])||0,
+    maxLife:Number(g[1])||0,
+    gear:Number(g[2])||0,
+    passive:Number(g[3])||0,
+    other:Number(g[4])||0,
+    path:g[5]==='1',
+    auras:[]
+  };
+  const auraStrings=parts[1].split(';');
+  for(let i=0;i<4;i++){
+    const s=auraStrings[i]||'000';
+    const on=s[0]==='1';
+    const base10=parseInt(s.slice(1,3),36);
+    const supports=[];
+    for(let p=3;p+4<=s.length;p+=4){
+      const sid=s.slice(p,p+2);
+      const lvRaw=s.slice(p+2,p+4);
+      if(sid==='99') continue;
+      const id=parseInt(sid,36);
+      if(!Number.isInteger(id)||id<0||id>=relevant.length) continue;
+      const level=Math.max(1,Math.min(40,parseInt(lvRaw,36)||1));
+      supports.push({name:relevant[id],level});
+    }
+    data.auras.push({on,base:base10/10,supports});
+  }
+  return data;
+}
+
+function decodeCompactConfigV2(code){
+  if(!code.startsWith('z')) throw new Error('不是 V2 配置链接');
+  const base64=code.slice(1).replace(/-/g,'+').replace(/_/g,'/');
+  const padded=base64+'='.repeat((4-base64.length%4)%4);
+  const binary=atob(padded);
+  let value=0n;
+  for(let i=0;i<binary.length;i++) value=(value<<8n)|BigInt(binary.charCodeAt(i));
+  const padBits=(8-(COMPACT_V2_BITS%8))%8;
+  value>>=BigInt(padBits);
+  let pos=0;
+  const read=(bits)=>{
+    const shift=BigInt(COMPACT_V2_BITS-pos-bits);
+    const mask=(1n<<BigInt(bits))-1n;
+    const n=Number((value>>shift)&mask);
+    pos+=bits;
+    return n;
+  };
+  const decodeSignedTenth=(raw)=>{
+    const signed=raw>=2048?raw-4096:raw;
+    return signed/10;
+  };
+
+  const data={
+    maxMana:read(16),
+    maxLife:read(16),
+    gear:decodeSignedTenth(read(13)),
+    passive:decodeSignedTenth(read(13)),
+    other:decodeSignedTenth(read(13)),
+    path:read(1)===1,
+    auras:[]
+  };
+
+  for(let i=0;i<4;i++){
+    const on=read(1)===1;
+    const base=read(10)/10;
+    const supports=[];
+    for(let j=0;j<5;j++){
+      const skillId=read(4);
+      const level=read(6)+1;
+      if(skillId===15) continue;
+      if(skillId<0||skillId>=relevant.length) throw new Error('技能数据损坏');
+      supports.push({name:relevant[skillId],level});
+    }
+    data.auras.push({on,base,supports});
+  }
+  return data;
+}
+
 function decodeCompactConfig(code){
   if(code.startsWith('y')) return decodeCompactConfigV3(code);
   if(code.startsWith('z')) return decodeCompactConfigV2(code);
