@@ -402,8 +402,6 @@ function applyConfigState(data){
 }
 
 /* 分享配置：x 版位压缩。常见 4 光环 / 9 辅助约 36 个编码字符；保留 y、z 旧版解码兼容。 */
-const COMPACT_V4_BITS=215;
-
 function bytesToBase64Url(bytes){
   let binary='';
   for(const b of bytes) binary+=String.fromCharCode(b);
@@ -452,7 +450,7 @@ function encodeCompactConfigV4(obj){
     }
   }
 
-  const bytes=new Uint8Array(27);
+  const bytes=new Uint8Array(Math.ceil(bits.length/8));
   for(let i=0;i<bits.length;i++) bytes[Math.floor(i/8)]|=bits[i]<<(7-(i%8));
   return 'x'+bytesToBase64Url(bytes);
 }
@@ -460,7 +458,7 @@ function encodeCompactConfigV4(obj){
 function decodeCompactConfigV4(code){
   if(!code.startsWith('x')) throw new Error('不是 x 版配置链接');
   const binary=base64UrlToBinary(code.slice(1));
-  if(binary.length!==27) throw new Error('配置数据长度异常');
+  if(binary.length<1) throw new Error('配置数据长度异常');
   const bits=[];
   for(let i=0;i<binary.length;i++){
     const b=binary.charCodeAt(i);
@@ -468,7 +466,7 @@ function decodeCompactConfigV4(code){
   }
   let pos=0;
   const read=(count)=>{
-    if(pos+count>COMPACT_V4_BITS) throw new Error('配置数据不完整');
+    if(pos+count>bits.length) throw new Error('配置数据不完整');
     let n=0;
     for(let i=0;i<count;i++) n=(n<<1)|bits[pos++];
     return n;
