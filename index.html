@@ -858,7 +858,7 @@ function loadLocalConfig(){
 function loadConfigFromUrl(){
   const params=new URL(location.href).searchParams;
   const hash=new URL(location.href).hash;
-  const compact=params.get('c')||(hash.startsWith('#y')||hash.startsWith('#z')?hash.slice(1):'')||(hash.startsWith('#c=')?hash.slice(3):'');
+  const compact=params.get('c')||(hash.startsWith('#w')||hash.startsWith('#y')||hash.startsWith('#z')?hash.slice(1):'')||(hash.startsWith('#c=')?hash.slice(3):'');
   const legacy=params.get('config');
   const code=compact||legacy;
   if(!code) return false;
