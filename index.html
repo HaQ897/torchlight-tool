@@ -270,11 +270,72 @@ function applyConfigState(data){
     }
   }
 }
+
+/* 紧凑配置链接：比完整 JSON/Base64 链接短很多；同时兼容旧版 ?config= 链接。 */
+function encodeCompactConfig(obj){
+  const globalPart=[
+    Number(obj.maxMana)||0,
+    Number(obj.maxLife)||0,
+    Number(obj.gear)||0,
+    Number(obj.passive)||0,
+    Number(obj.other)||0,
+    obj.path?1:0
+  ].join(',');
+  const auraPart=(obj.auras||[]).slice(0,4).map(a=>{
+    const on=a?.on?1:0;
+    const base10=Math.max(0,Math.min(1000,Math.round((Number(a?.base)||0)*10)));
+    const base36=base10.toString(36).padStart(2,'0');
+    const slots=(a?.supports||[]).slice(0,5).map(s=>{
+      const id=Math.max(0,relevant.indexOf(s?.name));
+      const skillId=(s?.name?String(id).padStart(2,'0'):'99');
+      const lv=Math.max(1,Math.min(40,Number(s?.level)||1)).toString(36).padStart(2,'0');
+      return skillId+lv;
+    }).join('');
+    return on+base36+slots;
+  }).join(';');
+  return globalPart+'|'+auraPart;
+}
+function decodeCompactConfig(code){
+  const parts=code.split('|');
+  if(parts.length<2) throw new Error('配置链接格式错误');
+  const g=parts[0].split(',');
+  const data={
+    maxMana:Number(g[0])||0,
+    maxLife:Number(g[1])||0,
+    gear:Number(g[2])||0,
+    passive:Number(g[3])||0,
+    other:Number(g[4])||0,
+    path:g[5]==='1',
+    auras:[]
+  };
+  const auraStrings=parts[1].split(';');
+  for(let i=0;i<4;i++){
+    const s=auraStrings[i]||'0'+'000';
+    const on=s[0]==='1';
+    const base10=parseInt(s.slice(1,3),36);
+    const supports=[];
+    for(let p=3;p+4<=s.length;p+=4){
+      const sid=s.slice(p,p+2);
+      const lvRaw=s.slice(p+2,p+4);
+      if(sid==='99') continue;
+      const id=parseInt(sid,36);
+      if(!Number.isInteger(id)||id<0||id>=relevant.length) continue;
+      const level=Math.max(1,Math.min(40,parseInt(lvRaw,36)||1));
+      supports.push({name:relevant[id],level});
+    }
+    data.auras.push({on,base:base10/10,supports});
+  }
+  return data;
+}
+
 function loadConfigFromUrl(){
-  const code=new URL(location.href).searchParams.get('config');
+  const params=new URL(location.href).searchParams;
+  const compact=params.get('c');
+  const legacy=params.get('config');
+  const code=compact||legacy;
   if(!code) return false;
   try{
-    applyConfigState(decodeConfig(code));
+    applyConfigState(compact?decodeCompactConfig(code):decodeConfig(code));
     return true;
   }catch(err){
     console.warn('配置链接无法读取',err);
@@ -283,7 +344,8 @@ function loadConfigFromUrl(){
 }
 async function copyConfigLink(){
   const url=new URL(location.href);
-  url.searchParams.set('config',encodeConfig(getConfigState()));
+  url.searchParams.delete('config');
+  url.searchParams.set('c',encodeCompactConfig(getConfigState()));
   const link=url.toString();
   const btn=document.getElementById('copyConfig');
   try{
@@ -302,7 +364,7 @@ async function copyConfigLink(){
   btn.textContent='已复制配置链接';
   setTimeout(()=>{btn.textContent=oldText},1600);
 }
-document.getElementById('copyConfig').addEventListener('click',copyConfigLink);
+
 loadConfigFromUrl();
 render();
 calc();
