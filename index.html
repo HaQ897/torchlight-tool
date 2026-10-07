@@ -1030,8 +1030,26 @@ async function copyConfigLink(){
 
 
 document.getElementById('copyConfig').addEventListener('click',copyConfigLink);
-loadLocalConfig();
+
+// URL 中存在分享配置时，始终以分享配置为准，不读取或覆盖到本地配置。
 const hasUrlConfig=loadConfigFromUrl();
+if(!hasUrlConfig) loadLocalConfig();
 render();
 calc();
+
+// 从浏览器历史 / bfcache 返回时重新应用分享配置，避免“恢复默认/清空辅助”后的页面状态被保留。
+window.addEventListener('pageshow',()=>{
+  if(loadConfigFromUrl()){
+    render();
+    calc();
+  }
+});
+
+// 手动修改 hash 后也立即恢复对应的分享配置。
+window.addEventListener('hashchange',()=>{
+  if(loadConfigFromUrl()){
+    render();
+    calc();
+  }
+});
 </script></body></html>
