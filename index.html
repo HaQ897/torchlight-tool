@@ -401,6 +401,157 @@ function applyConfigState(data){
   }
 }
 
+/* 分享配置：v5 采用“默认值继承 + 仅编码差异”的位压缩格式。旧版 x/y/z 仍兼容读取。 */
+const SHARE_VERSION=5;
+const SHARE_DEFAULTS={
+  maxMana:500,maxLife:2500,gear:0,passive:21.5,other:0,path:true,
+  auras:[
+    {on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'加速冷却',level:20}]},
+    {on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20}]},
+    {on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20}]},
+    {on:true,base:50,supports:[{name:'节流',level:20},{name:'封印转化',level:20}]}
+  ]
+};
+
+function shareBitsToBase64Url(bits){
+  const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  const out=[];
+  for(let i=0;i<bits.length;i+=6){
+    let n=0;
+    for(let j=0;j<6;j++) n=(n<<1)|(bits[i+j]||0);
+    out.push(alphabet[n]);
+  }
+  return out.join('');
+}
+function shareBase64UrlToBits(code){
+  const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  const bits=[];
+  for(const ch of code){
+    const n=alphabet.indexOf(ch);
+    if(n<0) throw new Error('配置链接字符错误');
+    for(let j=5;j>=0;j--) bits.push((n>>j)&1);
+  }
+  return bits;
+}
+function sharePush(bits,n,count){
+  const value=BigInt(n);
+  for(let i=count-1;i>=0;i--) bits.push(Number((value>>BigInt(i))&1n));
+}
+function shareRead(bits,ref,count){
+  if(ref.pos+count>bits.length) throw new Error('配置数据不完整');
+  let n=0;
+  for(let i=0;i<count;i++) n=(n<<1)|bits[ref.pos++];
+  return n;
+}
+function shareVarPush(bits,n){
+  let v=Math.max(0,Math.round(Number(n)||0));
+  do{
+    const chunk=v%128;
+    v=Math.floor(v/128);
+    bits.push(v?1:0);
+    sharePush(bits,chunk,7);
+  }while(v);
+}
+function shareVarRead(bits,ref){
+  let value=0,shift=0;
+  for(let i=0;i<5;i++){
+    const more=shareRead(bits,ref,1);
+    const chunk=shareRead(bits,ref,7);
+    value+=chunk*Math.pow(2,shift);
+    if(!more) return value;
+    shift+=7;
+  }
+  throw new Error('配置数值异常');
+}
+function shareSignedPush(bits,n){
+  const v=Math.round(Number(n)||0);
+  shareVarPush(bits,v<0?(-v*2-1):(v*2));
+}
+function shareSignedRead(bits,ref){
+  const z=shareVarRead(bits,ref);
+  return z%2===0?z/2:-(z+1)/2;
+}
+function shareSameSupport(a,b){
+  return (a?.name||'')===(b?.name||'') && (!a?.name || Number(a?.level||1)===Number(b?.level||1));
+}
+function shareSameAura(a,b){
+  if(!!a.on!==!!b.on || Math.round((Number(a.base)||0)*10)!==Math.round((Number(b.base)||0)*10)) return false;
+  const as=Array.isArray(a.supports)?a.supports:[], bs=Array.isArray(b.supports)?b.supports:[];
+  if(as.length!==bs.length) return false;
+  return as.every((x,i)=>shareSameSupport(x,bs[i]));
+}
+function encodeShareConfigV5(obj){
+  const bits=[];
+  sharePush(bits,SHARE_VERSION,3);
+  const flags={
+    maxMana:Math.round(Number(obj.maxMana)||0)!==SHARE_DEFAULTS.maxMana,
+    maxLife:Math.round(Number(obj.maxLife)||0)!==SHARE_DEFAULTS.maxLife,
+    gear:Math.round((Number(obj.gear)||0)*10)!==0,
+    passive:Math.round((Number(obj.passive)||0)*10)!==215,
+    other:Math.round((Number(obj.other)||0)*10)!==0,
+    path:!!obj.path!==SHARE_DEFAULTS.path
+  };
+  ['maxMana','maxLife','gear','passive','other','path'].forEach(k=>bits.push(flags[k]?1:0));
+  if(flags.maxMana) shareVarPush(bits,Math.max(0,Math.min(65535,Math.round(Number(obj.maxMana)||0))));
+  if(flags.maxLife) shareVarPush(bits,Math.max(0,Math.min(65535,Math.round(Number(obj.maxLife)||0))));
+  if(flags.gear) shareSignedPush(bits,Math.round(Math.max(-204.8,Math.min(204.7,Number(obj.gear)||0))*10));
+  if(flags.passive) shareSignedPush(bits,Math.round(Math.max(-204.8,Math.min(204.7,Number(obj.passive)||0))*10));
+  if(flags.other) shareSignedPush(bits,Math.round(Math.max(-204.8,Math.min(204.7,Number(obj.other)||0))*10));
+  if(flags.path) bits.push(obj.path?1:0);
+
+  const auraDiffs=[];
+  for(let i=0;i<4;i++) auraDiffs.push(!shareSameAura(obj.auras?.[i]||{},SHARE_DEFAULTS.auras[i]));
+  auraDiffs.forEach(v=>bits.push(v?1:0));
+
+  for(let i=0;i<4;i++){
+    if(!auraDiffs[i]) continue;
+    const a=obj.auras?.[i]||{on:false,base:0,supports:[]};
+    const supports=(Array.isArray(a.supports)?a.supports:[]).filter(s=>s?.name&&relevant.includes(s.name)).slice(0,5);
+    bits.push(a.on?1:0);
+    sharePush(bits,Math.max(0,Math.min(1000,Math.round((Number(a.base)||0)*10))),10);
+    sharePush(bits,supports.length,3);
+    for(const slot of supports){
+      sharePush(bits,relevant.indexOf(slot.name),4);
+      sharePush(bits,Math.max(0,Math.min(39,Math.round(Number(slot.level)||1)-1)),6);
+    }
+  }
+  return 'w'+shareBitsToBase64Url(bits);
+}
+function decodeShareConfigV5(code){
+  if(!code.startsWith('w')) throw new Error('不是 w 版配置链接');
+  const bits=shareBase64UrlToBits(code.slice(1)), ref={pos:0};
+  const version=shareRead(bits,ref,3);
+  if(version!==SHARE_VERSION) throw new Error('配置版本不兼容');
+  const flagNames=['maxMana','maxLife','gear','passive','other','path'], flags={};
+  flagNames.forEach(k=>flags[k]=!!shareRead(bits,ref,1));
+
+  const data=JSON.parse(JSON.stringify(SHARE_DEFAULTS));
+  if(flags.maxMana) data.maxMana=shareVarRead(bits,ref);
+  if(flags.maxLife) data.maxLife=shareVarRead(bits,ref);
+  if(flags.gear) data.gear=shareSignedRead(bits,ref)/10;
+  if(flags.passive) data.passive=shareSignedRead(bits,ref)/10;
+  if(flags.other) data.other=shareSignedRead(bits,ref)/10;
+  if(flags.path) data.path=!!shareRead(bits,ref,1);
+
+  const auraDiffs=[];
+  for(let i=0;i<4;i++) auraDiffs.push(!!shareRead(bits,ref,1));
+  for(let i=0;i<4;i++){
+    if(!auraDiffs[i]) continue;
+    const on=!!shareRead(bits,ref,1);
+    const base=shareRead(bits,ref,10)/10;
+    const count=shareRead(bits,ref,3);
+    if(count>5) throw new Error('辅助数量异常');
+    const supports=[];
+    for(let j=0;j<count;j++){
+      const id=shareRead(bits,ref,4), level=shareRead(bits,ref,6)+1;
+      if(id<0||id>=relevant.length) throw new Error('技能数据损坏');
+      supports.push({name:relevant[id],level});
+    }
+    data.auras[i]={on,base,supports};
+  }
+  return data;
+}
+
 /* 分享配置：x 版位压缩。常见 4 光环 / 9 辅助约 36 个编码字符；保留 y、z 旧版解码兼容。 */
 function bytesToBase64Url(bytes){
   let binary='';
@@ -683,11 +834,13 @@ function decodeCompactConfigV2(code){
 }
 
 function decodeCompactConfig(code){
+  if(code.startsWith('w')) return decodeShareConfigV5(code);
   if(code.startsWith('x')) return decodeCompactConfigV4(code);
   if(code.startsWith('y')) return decodeCompactConfigV3(code);
   if(code.startsWith('z')) return decodeCompactConfigV2(code);
   return decodeCompactConfigLegacy(code);
 }
+
 
 const STORAGE_KEY='haq897_torchlight_tool_config_v1';
 function saveLocalConfig(){
@@ -721,7 +874,7 @@ async function copyConfigLink(){
   const url=new URL(location.href);
   url.searchParams.delete('config');
   url.searchParams.delete('c');
-  url.hash=encodeCompactConfigV4(getConfigState());
+  url.hash=encodeShareConfigV5(getConfigState());
   const link=url.toString();
   const btn=document.getElementById('copyConfig');
   try{
