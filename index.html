@@ -286,7 +286,9 @@ ${conv?`<div class="row life"><span>　封印转化</span><span>该光环魔力�
   const lifeSealed=Math.max(0,lifeSealedByAuras);
   const lifeRemain=lifeMax-lifeSealed;
   const freeRatio=max>0?remain/max*100:100;
-  const actualTotalRatio=max>0?sealed/max*100:0;
+  // 总魔力封印必须与前面的“剩余魔力”使用同一套游戏取整后的实际数值。
+  // 因此直接用剩余比例的补数计算，避免再次使用未取整的封印百分比。
+  const actualTotalRatio=max>0?100-freeRatio:0;
 
   document.getElementById('total').textContent=actualTotalRatio.toFixed(2)+'%';
   document.getElementById('sealed').textContent=sealed;
