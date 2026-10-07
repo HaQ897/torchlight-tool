@@ -11,8 +11,12 @@
 @media(max-width:900px){.globalGrid,.grid{grid-template-columns:repeat(3,1fr)}.summary{grid-template-columns:1fr 1fr}.auras{grid-template-columns:1fr}}@media(max-width:480px){.globalGrid,.grid,.summary{grid-template-columns:1fr}.globalGrid .switch{white-space:normal}.globalHint{white-space:normal;overflow:visible;text-overflow:clip}}
 .globalInfoIcon:hover{border-color:#7d8794;color:#30343a;background:#f7f8fa}
 .brandMark{position:fixed;right:14px;bottom:10px;z-index:4000;font-size:11px;color:#98a0aa;opacity:.72;pointer-events:none;user-select:none}
-.siteFooter{max-width:1120px;margin:8px auto 28px;padding:0 16px;text-align:center;font-size:11px;color:#9aa2ac;line-height:1.6}
-.siteFooter span{display:inline-block;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.65);border:1px solid #eceff2}
+.siteFooter{max-width:1120px;margin:10px auto 30px;padding:0 16px;text-align:center;font-size:11px;color:#9aa2ac;line-height:1.6}
+.footerBrand{font-size:13px;font-weight:650;color:#6f7781;margin-bottom:7px}
+.footerLinks{display:flex;justify-content:center;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:5px}
+.footerLinks a{padding:0 10px;color:#69727d;text-decoration:none;line-height:1.6;transition:color .15s}.footerLinks a+a{border-left:1px solid #dfe3e8}.footerLinks a:hover{color:#20242a}
+.footerGroup{font-size:10px;color:#a0a7b0}
+@media(max-width:480px){.footerLinks a{padding:0 8px}.siteFooter{padding:0 10px}}
 @media(max-width:480px){.brandMark{right:9px;bottom:8px;font-size:10px}}
 </style></head><body><div id="skillTooltip" class="skillTooltip"><div class="ttTitle"></div><div class="ttBody"></div></div><div class="wrap"><div class="title">魔力封印计算器</div><div class="sub">4 个光环｜只输入原始魔力保留｜最多 5 个辅助｜支持「独辟蹊径」｜默认辅助已按常见四光环配置设置</div>
 <div class="card"><h2>全局参数</h2><div class="grid globalGrid"><div><label>最大魔力</label><input id="maxMana" type="number" min="0" value="1000"></div><div><label>最大生命</label><input id="maxLife" type="number" min="0" value="5000"></div><div><label>装备魔力封印补偿 %</label><input id="gear" type="number" value="0"></div><div><label>天赋 / 被动补偿 %</label><input id="passive" type="number" value="22"></div><div><label>其他补偿 %</label><input id="other" type="number" value="0"></div><label class="switch" style="align-self:end;margin:0 0 2px;overflow:hidden"><input id="path" type="checkbox" checked><span style="flex:0 0 auto;font-size:13px">独辟蹊径</span><span class="globalHint" title="独辟蹊径：辅助技能等级 +4；辅助技能魔力倍率固定为 95%。">（+4 辅助等级；倍率 95%）</span><span class="globalInfoIcon" title="独辟蹊径：辅助技能等级 +4；辅助技能魔力倍率固定为 95%。" aria-label="独辟蹊径说明">i</span></label></div></div>
@@ -20,7 +24,7 @@
 <div class="card"><h2>魔力封印</h2><div class="summary"><div class="metric"><label>总魔力封印</label><b id="total">0.00%</b></div><div class="metric"><label>已封印魔力</label><b id="sealed">0</b></div><div class="metric"><label>剩余魔力（向上取整）</label><b id="remain">0</b></div><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="free">100.00%</b></div></div><h2 style="margin-top:18px">生命封印</h2><div class="summary"><div class="metric"><label>总生命封印</label><b id="lifeTotal" class="life">0.00%</b></div><div class="metric"><label>已封印生命</label><b id="lifeSealed" class="life">0</b></div><div class="metric"><label>剩余生命（向上取整）</label><b id="lifeRemain" class="life">0</b></div><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="lifeFree" class="life">100.00%</b></div></div><div id="status" class="statusBar ok">可以同时开启 4 个光环</div></div>
 <div class="card"><h2>逐项计算</h2><div id="detail" class="detail"></div></div>
 <div class="card"><div class="tools"><button class="ghost" id="clear">清空辅助</button><button class="ghost" id="reset">恢复默认</button></div></div></div>
-<div class="siteFooter"><span>哈秋　·　火炬群：248727188</span></div>
+<div class="siteFooter"><div class="footerBrand">哈秋 · 火炬工具</div><div class="footerLinks"><a href="https://qm.qq.com/q/G8ZVQhfbC8" target="_blank" rel="noopener noreferrer">加入火炬群</a><a href="https://www.douyin.com/user/self?from_tab_name=main" target="_blank" rel="noopener noreferrer">抖音主页</a><a href="https://space.bilibili.com/534802?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">B站主页</a></div><div class="footerGroup">火炬群：248727188</div></div>
 <div class="brandMark">@哈秋</div>
 <script>
 const iconUrls={
