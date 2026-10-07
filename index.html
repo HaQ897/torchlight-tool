@@ -1,0 +1,220 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>火炬之光：无限｜魔力封印计算器 v37</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#20242a;font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}.wrap{max-width:1120px;margin:20px auto 54px;padding:0 16px}.title{font-size:28px;font-weight:800}.sub{color:#69717d;margin:4px 0 14px}.card{background:#fff;border:1px solid #e1e5e9;border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 2px 8px #00000008}h2{font-size:16px;margin:0 0 10px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.globalGrid{grid-template-columns:repeat(5,minmax(0,1fr)) minmax(320px,2.25fr);gap:9px;align-items:end}.globalGrid>div,.globalGrid>.switch{min-width:0}.globalGrid label{white-space:nowrap}.globalGrid input{height:38px}.globalGrid .switch{margin-top:0;white-space:nowrap;font-weight:600;width:100%;min-width:0;padding:0 12px;height:38px;border:1px solid #d9e0e7;border-radius:10px;background:linear-gradient(180deg,#fafbfd,#f3f6f9);overflow:hidden;display:flex;align-items:center;gap:8px;box-shadow:inset 0 1px 0 #fff}.globalHint{font-size:12px;color:#5f6975;cursor:help;display:block;min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}.globalInfoIcon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;min-width:15px;border:1px solid #aeb6c2;border-radius:50%;font-size:10px;font-weight:700;line-height:1;color:#68717c;background:#fff;cursor:help;margin-left:5px;vertical-align:middle}label{display:block;font-size:12px;color:#68717c;margin:0 0 5px}input,select{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;padding:0 9px;font-size:14px;background:#fff}button{border:0;border-radius:9px;padding:9px 13px;cursor:pointer;background:#20242a;color:#fff}.ghost{background:#eef0f3;color:#333}.switch{display:flex;gap:8px;align-items:center;margin-top:17px}.switch input{width:auto;height:auto}.hint{font-size:12px;color:#727a84;line-height:1.7;margin-top:7px}.auras{display:grid;grid-template-columns:1fr 1fr;gap:10px}.aura{border:1px solid #e0e4e9;border-radius:12px;padding:11px}.aura.off{opacity:.58;background:#fafafa}.auraToggle{display:flex;align-items:center;gap:8px}.auraToggle input{width:17px;height:17px}.disabledFields{pointer-events:none}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.n{font-weight:800}.small{font-size:12px;color:#7a828c}.support{display:grid;grid-template-columns:minmax(0,1fr) 128px 42px;gap:6px;align-items:end;margin-top:7px}.skillSelectWrap{display:flex;align-items:center;gap:6px;position:relative}.skillSelect{position:relative;flex:1;min-width:0}.skillTrigger{width:100%;height:39px;border:1px solid #d5dae0;border-radius:9px;background:#fff;color:#20242a;padding:0 31px 0 8px;display:flex;align-items:center;gap:8px;text-align:left;font-size:14px;cursor:pointer;position:relative}.skillTrigger:hover{border-color:#bfc6ce}.skillTrigger:focus{outline:2px solid #b9d7ff;border-color:#76aef7}.skillTrigger .skillIcon{width:28px;height:28px;flex:0 0 28px}.skillChevron{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:10px;color:#707780;pointer-events:none}.skillMenu{position:absolute;left:0;right:0;top:43px;background:#fff;border:1px solid #d5dae0;border-radius:9px;box-shadow:0 8px 24px #00000018;padding:5px;z-index:50;max-height:260px;overflow:auto;display:none}.skillMenu.open{display:block}.skillOption{display:flex;align-items:center;gap:8px;width:100%;min-height:40px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:14px}.skillOption:hover{background:#f0f3f6}.skillOption.selected{background:#eaf2fb}.skillOption img{width:30px;height:30px;flex:0 0 30px;border-radius:6px;object-fit:cover;border:1px solid #dfe3e8;background:#f1f3f6}.skillOptionText{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.levelTop{display:flex;align-items:center;gap:6px;height:18px}.levelTop label{margin:0}.levelInputWrap{width:100%}.levelBox{position:relative;display:flex;align-items:center;width:100%;height:39px;border:1px solid #d9dde2;border-radius:9px;background:#fff;overflow:hidden}.levelBox:focus-within{outline:2px solid #b9d7ff;border-color:#76aef7}.levelBox .lv{width:100%;min-width:0;height:37px;border:0;border-radius:0;padding:0 58px 0 11px;background:transparent;font-size:14px;outline:none;appearance:textfield}.levelBox .lv::-webkit-inner-spin-button,.levelBox .lv::-webkit-outer-spin-button{appearance:none;margin:0}.stepper{position:absolute;right:31px;top:4px;width:20px;height:31px;display:flex;flex-direction:column;gap:1px}.stepper button{width:20px;height:15px;padding:0;border:0;border-radius:4px;background:#eef0f3;color:#555;font-size:10px;line-height:15px;cursor:pointer}.stepper button:hover{background:#e1e5e9}.pathBonus{position:absolute;right:7px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:24px;height:22px;padding:0;font-size:11px;font-weight:700;color:#68717c;white-space:nowrap;visibility:hidden;pointer-events:none}.pathBonus.on{visibility:visible}.x{width:42px;height:39px;background:#fff;color:#555;border:1px solid #ddd;padding:0;font-size:18px;line-height:1}.add{width:100%;margin-top:9px;background:#f0f2f5;color:#333}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#f7f8fa;border-radius:11px;padding:10px}.metric b{display:block;font-size:21px;margin-top:3px}.ok{color:#198754}.bad{color:#c62828}.detail{font-size:13px;line-height:1.75}.row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #e2e5e9;padding:5px 0}.tag{display:inline-block;font-size:11px;padding:2px 6px;border-radius:5px;background:#eef3f8;margin-left:5px}.life{color:#9a6700}.note{font-size:12px;color:#747c86;line-height:1.7}.tools{display:flex;gap:8px;flex-wrap:wrap}.search{margin-bottom:8px}
+
+.skillTooltip{position:fixed;z-index:10000;display:none;max-width:330px;padding:10px 12px;border:1px solid #cfd6dd;border-radius:9px;background:rgba(27,31,36,.97);color:#fff;font-size:13px;line-height:1.6;box-shadow:0 10px 28px #00000030;pointer-events:none;white-space:pre-line}
+.skillTooltip .ttTitle{font-weight:800;margin-bottom:4px;color:#fff}
+.skillTooltip .ttBody{color:#e8edf2}
+
+.statusBar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:5000;min-width:min(520px,calc(100vw - 28px));max-width:calc(100vw - 28px);padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.96);border:1px solid #dfe4e8;box-shadow:0 8px 28px #00000018;text-align:center;font-weight:800;font-size:14px;backdrop-filter:blur(8px)}
+.statusBar.ok{color:#198754;border-color:#bfe3cf;background:rgba(245,255,249,.97)}
+.statusBar.bad{color:#c62828;border-color:#f0c7c7;background:rgba(255,247,247,.97)}
+@media(max-width:900px){.globalGrid,.grid{grid-template-columns:repeat(3,1fr)}.summary{grid-template-columns:1fr 1fr}.auras{grid-template-columns:1fr}}@media(max-width:480px){.globalGrid,.grid,.summary{grid-template-columns:1fr}.globalGrid .switch{white-space:normal}.globalHint{white-space:normal;overflow:visible;text-overflow:clip}}
+.globalInfoIcon:hover{border-color:#7d8794;color:#30343a;background:#f7f8fa}
+.brandMark{position:fixed;right:14px;bottom:10px;z-index:4000;font-size:11px;color:#98a0aa;opacity:.72;pointer-events:none;user-select:none}
+.siteFooter{max-width:1120px;margin:8px auto 28px;padding:0 16px;text-align:center;font-size:11px;color:#9aa2ac;line-height:1.6}
+.siteFooter span{display:inline-block;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.65);border:1px solid #eceff2}
+@media(max-width:480px){.brandMark{right:9px;bottom:8px;font-size:10px}}
+</style></head><body><div id="skillTooltip" class="skillTooltip"><div class="ttTitle"></div><div class="ttBody"></div></div><div class="wrap"><div class="title">魔力封印计算器</div><div class="sub">4 个光环｜只输入原始魔力保留｜最多 5 个辅助｜支持「独辟蹊径」｜默认辅助已按常见四光环配置设置</div>
+<div class="card"><h2>全局参数</h2><div class="grid globalGrid"><div><label>最大魔力</label><input id="maxMana" type="number" min="0" value="1000"></div><div><label>最大生命</label><input id="maxLife" type="number" min="0" value="5000"></div><div><label>装备魔力封印补偿 %</label><input id="gear" type="number" value="0"></div><div><label>天赋 / 被动补偿 %</label><input id="passive" type="number" value="22"></div><div><label>其他补偿 %</label><input id="other" type="number" value="0"></div><label class="switch" style="align-self:end;margin:0 0 2px;overflow:hidden"><input id="path" type="checkbox" checked><span style="flex:0 0 auto;font-size:13px">独辟蹊径</span><span class="globalHint" title="独辟蹊径：辅助技能等级 +4；辅助技能魔力倍率固定为 95%。">（+4 辅助等级；倍率 95%）</span><span class="globalInfoIcon" title="独辟蹊径：辅助技能等级 +4；辅助技能魔力倍率固定为 95%。" aria-label="独辟蹊径说明">i</span></label></div></div>
+<div class="auras" id="auras"></div>
+<div class="card"><h2>魔力封印</h2><div class="summary"><div class="metric"><label>总魔力封印</label><b id="total">0.00%</b></div><div class="metric"><label>已封印魔力</label><b id="sealed">0</b></div><div class="metric"><label>剩余魔力（向上取整）</label><b id="remain">0</b></div><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="free">100.00%</b></div></div><h2 style="margin-top:18px">生命封印</h2><div class="summary"><div class="metric"><label>总生命封印</label><b id="lifeTotal" class="life">0.00%</b></div><div class="metric"><label>已封印生命</label><b id="lifeSealed" class="life">0</b></div><div class="metric"><label>剩余生命（向上取整）</label><b id="lifeRemain" class="life">0</b></div><div class="metric"><label>可用比例（按游戏取整规则）</label><b id="lifeFree" class="life">100.00%</b></div></div><div id="status" class="statusBar ok">可以同时开启 4 个光环</div></div>
+<div class="card"><h2>逐项计算</h2><div id="detail" class="detail"></div></div>
+<div class="card"><div class="tools"><button class="ghost" id="clear">清空辅助</button><button class="ghost" id="reset">恢复默认</button></div></div></div>
+<div class="siteFooter"><span>哈秋　·　火炬群：248727188</span></div>
+<div class="brandMark">@哈秋</div>
+<script>
+const iconUrls={
+  "":"data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" rx="10" fill="#eef0f3"/><text x="32" y="40" text-anchor="middle" font-size="28" fill="#636b75">—</text></svg>`),
+  "节流":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_Enlightenment_128.webp",
+  "光环增幅":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_AuraEnhance_Icon_128.webp",
+  "封印转化":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Support_BloodMagic_Icon_128.webp",
+  "精密 封印转化":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Support_BloodMagicSpecial_Icon_128.webp",
+  "精密 无私":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Support_SelflessSpecial_Icon_128.webp",
+  "精密 自私":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Support_SelfishSpecial_Icon_128.webp",
+  "精密 多则能成":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Support_MoreIsGreatSpecial_Icon_128.webp",
+  "精密 律己":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_SelfDisciplineSpecial_Icon_128.webp",
+  "精密 全神贯注":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_AuraConcentrateSpecial_Icon_128.webp",
+  "精密 遇强则强":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_StrongFaceStrongSpecial_Icon_128.webp",
+  "精密 人多势众":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_PeopleStrongSpecial_Icon_128.webp",
+  "精密 节流":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_EnlightenmentSpecial_128.webp",
+  "加速冷却":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_CooldownReduce_128.webp",
+  "范围扩大":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_IncreasedArea_128.webp"
+};
+function iconFallback(name){
+  const ch=(name||'无').replace(/\s/g,'').slice(0,1)||'—';
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7b61a8"/><stop offset="1" stop-color="#4f86c6"/></linearGradient></defs><rect width="64" height="64" rx="10" fill="url(#g)"/><text x="32" y="40" text-anchor="middle" font-size="28" font-weight="700" fill="white">${ch}</text></svg>`);
+}
+function setSkillIcon(img,name){
+  const src=iconUrls[name]||iconFallback(name);
+  img.src=src;
+  img.alt=name?displayName(name)+'图标':'无';
+  img.onerror=()=>{img.onerror=null;img.src=iconFallback(name)};
+}
+const relevant=["节流","光环增幅","封印转化","精密 封印转化","精密 无私","精密 自私","精密 多则能成","精密 律己","精密 全神贯注","精密 遇强则强","精密 人多势众","精密 节流","加速冷却","范围扩大"];
+const skillDescriptions={
+  "节流":"辅助被动技能。\n被辅助技能 0.5% 魔力封印补偿，并随技能等级成长。",
+  "光环增幅":"辅助光环技能。\n被辅助技能 5.25% 光环效果，并获得 +100% 技能范围。该数值随技能等级成长。",
+  "封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n被辅助技能额外 -70% 魔力封印补偿（随等级成长）。",
+  "精密 封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n被辅助技能额外 -60% 魔力封印补偿（随等级成长）。",
+  "精密 无私":"辅助光环技能。\n额外 -90% 受到的被辅助技能的光环效果。\n被辅助技能 22.2% 光环效果。\n被辅助技能 -12% 魔力封印补偿。",
+  "精密 自私":"辅助光环技能。\n被辅助技能无法对友军生效。\n被辅助技能 20.2% 光环效果。\n被辅助技能 -12% 魔力封印补偿。",
+  "精密 多则能成":"辅助光环技能。\n自身每受 1 个光环影响，被辅助技能 4.1% 光环效果，上限 5 层。",
+  "精密 律己":"辅助光环技能。\n被辅助技能 +35% 魔力封印补偿。\n被辅助技能额外 -20.9% 光环效果。",
+  "精密 全神贯注":"辅助光环技能。\n自身受不超过 2 个光环影响时，被辅助技能 25.5% 光环效果。",
+  "精密 遇强则强":"辅助光环技能。\n10 米内存在劲敌时，被辅助技能 20.5% 光环效果；否则额外 -15% 光环效果。\n被辅助技能 -15% 魔力封印补偿。",
+  "精密 人多势众":"辅助光环技能。\n被辅助技能每影响 1 名友军，3.1% 光环效果，上限 7 层。\n被辅助技能 -12% 魔力封印补偿。",
+  "精密 节流":"辅助被动技能。\n被辅助技能 15.5% 魔力封印补偿，并随技能等级成长。",
+  "加速冷却":"辅助任意技能。\n魔力消耗倍率 110%。\n被辅助技能 +13% 冷却回复速度，并随技能等级成长。",
+  "范围扩大":"辅助范围技能。\n魔力消耗倍率 110%。\n被辅助技能 +20% 技能范围。"
+};
+function effectiveLevel(baseLv,path){
+  const base=Math.max(1,Math.min(40,Number(baseLv)||1));
+  return Math.max(1,Math.min(40,base+(path?4:0)));
+}
+function n1(v){return Number(v).toFixed(1).replace(/\.0$/,'')}
+function skillTooltipText(name,baseLv,path){
+  if(!name) return '空辅助栏';
+  const lv=effectiveLevel(baseLv,path);
+  const lvLine=`等级：${Number(baseLv)||1}${path?' +4':''}（按 ${lv} 级数值计算）`;
+  let lines=[lvLine];
+  switch(name){
+    case '节流':
+      lines.push(`魔力封印补偿：+${n1(.5*lv)}%`);
+      break;
+    case '精密 节流':
+      lines.push(`魔力封印补偿：+${n1(15.5+.5*(lv-1))}%`);
+      break;
+    case '光环增幅':
+      lines.push(`光环效果：+${n1(5.25+.25*(lv-1))}%`);
+      lines.push('技能范围：+100%');
+      break;
+    case '封印转化':
+      {const c=lv<=20?-70+.25*(lv-1):-65+.25*(lv-21);
+       // 编年史 Lv21 为 -65%，Lv22 起每级 +0.25 个百分点
+       if(lv>=21){lines=[lvLine,`魔力封印补偿：${n1(lv===21?-65:-65+.25*(lv-21))}%`];}
+       else lines.push(`魔力封印补偿：${n1(c)}%`);
+       lines.push('魔力封印 → 生命封印');}
+      break;
+    case '精密 封印转化':
+      {const c=lv<=21?-60+.5*(lv-1):-50+.25*(lv-21);
+       lines.push(`魔力封印补偿：${n1(c)}%`);
+       lines.push('魔力封印 → 生命封印');}
+      break;
+    case '精密 律己':
+      lines.push('魔力封印补偿：+35%');
+      lines.push(`额外光环效果：${n1(-20.9+.1*(lv-1))}%`);
+      break;
+    case '精密 自私':
+      lines.push('魔力封印补偿：-12%');
+      lines.push(`光环效果：+${n1(20.2+.2*(lv-1))}%`);
+      lines.push('无法对友军生效');
+      break;
+    case '精密 无私':
+      lines.push('魔力封印补偿：-12%');
+      lines.push(`光环效果：+${n1(22.2+.2*(lv-1))}%`);
+      lines.push('额外 -90% 受到的被辅助技能的光环效果');
+      break;
+    case '精密 多则能成':
+      lines.push(`每受 1 个光环影响：+${n1(4.1+.1*(lv-1))}% 光环效果，上限 5 层`);
+      break;
+    case '精密 全神贯注':
+      lines.push(`光环效果：+${n1(25.5+.5*(lv-1))}%`);
+      lines.push('自身受不超过 2 个光环影响时生效');
+      break;
+    case '精密 遇强则强':
+      lines.push('魔力封印补偿：-15%');
+      lines.push(`10 米内存在劲敌时：+${n1(20.5+.5*(lv-1))}% 光环效果`);
+      lines.push('否则：额外 -15% 光环效果');
+      break;
+    case '精密 人多势众':
+      lines.push('魔力封印补偿：-12%');
+      lines.push(`每影响 1 名友军：+${n1(3.1+.1*(lv-1))}% 光环效果，上限 7 层`);
+      break;
+    case '加速冷却':
+      lines.push('魔力消耗倍率：110%');
+      lines.push(`冷却回复速度：+${n1(13+.5*(lv-1))}%`);
+      break;
+    case '范围扩大':
+      lines.push('魔力消耗倍率：110%');
+      lines.push('技能范围：+20%（固定）');
+      lines.push(`额外伤害：+${n1(16+.2*(lv-1))}%`);
+      break;
+    default:
+      lines.push(skillDescriptions[name]||'暂无技能描述');
+  }
+  return lines.join('\n');
+}
+function showSkillTooltip(name,baseLv,path,e){
+  const tip=document.getElementById('skillTooltip');
+  if(!name){tip.style.display='none';return}
+  tip.querySelector('.ttTitle').textContent=displayName(name);
+  tip.querySelector('.ttBody').textContent=skillTooltipText(name,baseLv,path);
+  tip.style.display='block';
+  moveSkillTooltip(e);
+}
+function moveSkillTooltip(e){
+  const tip=document.getElementById('skillTooltip');
+  if(tip.style.display==='none')return;
+  const pad=12,gap=14;
+  let x=e.clientX+gap,y=e.clientY+gap;
+  const r=tip.getBoundingClientRect();
+  if(x+r.width>window.innerWidth-pad)x=e.clientX-r.width-gap;
+  if(y+r.height>window.innerHeight-pad)y=e.clientY-r.height-gap;
+  tip.style.left=Math.max(pad,x)+'px';
+  tip.style.top=Math.max(pad,y)+'px';
+}
+function hideSkillTooltip(){document.getElementById('skillTooltip').style.display='none'}
+
+const auras=[
+  {on:true,base:50,supports:[{name:"节流",level:20},{name:"光环增幅",level:20},{name:"加速冷却",level:20}]},
+  {on:true,base:50,supports:[{name:"节流",level:20},{name:"光环增幅",level:20},{name:"",level:20}]},
+  {on:true,base:50,supports:[{name:"节流",level:20},{name:"光环增幅",level:20},{name:"",level:20}]},
+  {on:true,base:50,supports:[{name:"节流",level:20},{name:"封印转化",level:20},{name:"",level:20}]}
+];
+function levelData(name,lv){lv=Math.max(1,Number(lv)||1);switch(name){case"节流":return{comp:.5*lv,life:false,conv:false,manaMult:1};case"精密 节流":return{comp:15+.5*lv,life:false,conv:false,manaMult:1};case"精密 律己":return{comp:35,life:false,conv:false,manaMult:1};case"精密 自私":return{comp:-12,life:false,conv:false,manaMult:1};case"精密 无私":return{comp:-12,life:false,conv:false,manaMult:1};case"精密 遇强则强":return{comp:-15,life:false,conv:false,manaMult:1};case"精密 人多势众":return{comp:-12,life:false,conv:false,manaMult:1};case"封印转化":return{comp:lv<=20?-70+.25*(lv-1):-65+.75*(lv-21),life:true,conv:true,manaMult:1};case"精密 封印转化":return{comp:lv<=20?-60+.5*(lv-1):-50+.25*(lv-21),life:true,conv:true,manaMult:1};case"加速冷却":return{comp:0,life:false,conv:false,manaMult:1.10};case"范围扩大":return{comp:0,life:false,conv:false,manaMult:1.10};default:return{comp:0,life:false,conv:false,manaMult:1}}}
+function auraEffect(name,lv){switch(name){case"光环增幅":return 5.25+.5*(lv-1);case"精密 律己":return -20.9+.1*(lv-1);case"精密 自私":return 20.2+.2*(lv-1);case"精密 无私":return 22.2+.2*(lv-1);case"精密 全神贯注":return 25.5+.5*(lv-1);case"精密 遇强则强":return 20.5+.5*(lv-1);default:return 0}}
+function displayName(n){return n.replace(/ /g,"·")}
+function escapeHtml(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function skillImgSrc(name){return iconUrls[name]||iconFallback(name)}
+function skillOptionsHtml(current){
+  const list=[''].concat(relevant);
+  return list.map(n=>`<div class="skillOption ${n===current?'selected':''}" data-name="${escapeHtml(n)}"><img src="${skillImgSrc(n)}" alt=""><span class="skillOptionText">${n?displayName(n):'无'}</span></div>`).join('');
+}
+function renderSkillPicker(s){
+  const label=s.name?displayName(s.name):'无';
+  return `<div class="skillSelect"><button type="button" class="skillTrigger"><img class="skillIcon" src="${skillImgSrc(s.name)}" alt=""><span class="skillOptionText">${escapeHtml(label)}</span><span class="skillChevron">▼</span></button><div class="skillMenu">${skillOptionsHtml(s.name)}</div></div>`;
+}
+function wireSkillPicker(r,s){
+  const picker=r.querySelector('.skillSelect');
+  const trigger=picker.querySelector('.skillTrigger');
+  const menu=picker.querySelector('.skillMenu');
+  const showCurrent=(e)=>showSkillTooltip(s.name,s.level,document.getElementById('path').checked,e);
+  trigger.onclick=(e)=>{e.stopPropagation(); document.querySelectorAll('.skillMenu.open').forEach(m=>{if(m!==menu)m.classList.remove('open')}); menu.classList.toggle('open')};
+  trigger.onmouseenter=showCurrent;
+  trigger.onmousemove=moveSkillTooltip;
+  trigger.onmouseleave=hideSkillTooltip;
+  menu.querySelectorAll('.skillOption').forEach(opt=>{
+    opt.onclick=(e)=>{
+      e.stopPropagation();
+      s.name=opt.dataset.name||'';
+      const img=trigger.querySelector('img');
+      const textEl=trigger.querySelector('.skillOptionText');
+      img.src=skillImgSrc(s.name); img.alt=s.name?displayName(s.name)+'图标':'无';
+      img.onerror=()=>{img.onerror=null;img.src=iconFallback(s.name)};
+      textEl.textContent=s.name?displayName(s.name):'无';
+      menu.querySelectorAll('.skillOption').forEach(x=>x.classList.remove('selected'));
+      opt.classList.add('selected');
+      menu.classList.remove('open');
+      hideSkillTooltip();
+      calc();
+    };
+    opt.onmouseenter=(e)=>showSkillTooltip(opt.dataset.name||'',s.level,document.getElementById('path').checked,e);
+    opt.onmousemove=moveSkillTooltip;
+    opt.onmouseleave=hideSkillTooltip;
+  });
+}
+document.addEventListener('click',()=>{document.querySelectorAll('.skillMenu.open').forEach(m=>m.classList.remove('open'));hideSkillTooltip()});
+function render(){const box=document.getElementById('auras');box.innerHTML='';auras.forEach((a,i)=>{const d=document.createElement('div');d.className=`aura ${a.on?'':'off'}`;d.innerHTML=`<div class="head"><label class="auraToggle"><input type="checkbox" class="on" ${a.on?'checked':''}><span class="n">光环 ${i+1}</span></label><span class="small">${a.on?'已开启':'未开启'}</span></div><div class="auraFields ${a.on?'':'disabledFields'}"><div><label>原始魔力保留 %</label><input class="base" type="number" min="0" max="100" step="0.1" value="${a.base}" ${a.on?'':'disabled'}></div><div class="supports"></div><button class="add" ${a.on&&a.supports.length<5?'':'disabled'}>＋ 添加辅助</button></div>`;const ss=d.querySelector('.supports');a.supports.forEach((s,j)=>{const r=document.createElement('div');r.className='support';r.innerHTML=`<div><label>辅助 ${j+1}</label><div class="skillSelectWrap">${renderSkillPicker(s)}</div></div><div><div class="levelTop"><label>等级</label></div><div class="levelInputWrap"><div class="levelBox"><input type="number" class="lv" min="1" max="40" value="${s.level}"><div class="stepper"><button type="button" class="up" aria-label="增加等级">▲</button><button type="button" class="down" aria-label="降低等级">▼</button></div><span class="pathBonus" title="独辟蹊径提供的辅助技能等级 +4">+4</span></div></div></div><button class="x">×</button>`;ss.appendChild(r);wireSkillPicker(r,s);const syncLv=()=>{const on=document.getElementById('path').checked;const b=r.querySelector('.pathBonus');b.className=`pathBonus ${on?'on':''}`};syncLv();r.querySelector('.lv').oninput=e=>{s.level=Math.max(1,Math.min(40,Number(e.target.value)||1));e.target.value=s.level;syncLv();calc()};const changeLevel=(delta)=>{s.level=Math.max(1,Math.min(40,(Number(s.level)||1)+delta));const inp=r.querySelector('.lv');inp.value=s.level;inp.dispatchEvent(new Event('input',{bubbles:true}))};r.querySelector('.up').onclick=()=>changeLevel(1);r.querySelector('.down').onclick=()=>changeLevel(-1);r.querySelector('.x').onclick=()=>{a.supports.splice(j,1);render();calc()}});d.querySelector('.on').onchange=e=>{a.on=e.target.checked;render();calc()};d.querySelector('.base').oninput=e=>{a.base=Number(e.target.value)||0;calc()};d.querySelector('.add').onclick=()=>{if(a.supports.length<5){a.supports.push({name:'',level:20});render();calc()}};box.appendChild(d)})}
+function calc(){const global=(+gear.value||0)+(+passive.value||0)+(+other.value||0),path=document.getElementById('path').checked,max=+maxMana.value||0,lifeMax=+document.getElementById('maxLife').value||0;let total=0,lifeTotal=0,detail='';auras.forEach((a,i)=>{if(!a.on){detail+=`<div class="row"><span>光环 ${i+1}</span><span>未开启</span></div>`;return}let mult=1,comp=global,conv=false,effects=0,names=[];a.supports.forEach(s=>{if(!s.name)return;const lv=(+s.level||1)+(path?4:0);const x=levelData(s.name,lv);if(x.conv)conv=true;comp+=x.comp;effects+=auraEffect(s.name,lv);names.push(`${s.name} Lv${lv}`);mult*=path?.95:(x.manaMult||1)});let seal=a.base*mult/(1+comp/100);total+=conv?0:seal;lifeTotal+=conv?seal:0;detail+=`<div class="row"><span>光环 ${i+1}　${a.base.toFixed(2)}% 原始</span><strong>${conv?seal.toFixed(3)+'%（生命封印）':seal.toFixed(3)+'%'}</strong></div><div class="row"><span>　辅助：${names.length?names.join('、'):'无'}</span><span></span></div><div class="row"><span>　封印补偿</span><span>${comp.toFixed(2)}%</span></div>${path&&names.length?`<div class="row"><span>　独辟蹊径辅助倍率</span><span>×${mult.toFixed(5)}</span></div>`:''}${effects?`<div class="row"><span>　光环效果（不计入魔力封印）</span><span>${effects.toFixed(2)}%</span></div>`:''}${conv?`<div class="row life"><span>　封印转化</span><span>该光环魔力封印 → 生命封印</span></div>`:''}`});const sealed=max*total/100,remain=max-sealed,lifeSealed=lifeMax*lifeTotal/100;document.getElementById('total').textContent=total.toFixed(2)+'%';document.getElementById('sealed').textContent=Math.floor(sealed);document.getElementById('remain').textContent=Math.ceil(remain);document.getElementById('free').textContent=(max>0?Math.ceil(Math.max(0,remain))/max*100:100).toFixed(2)+'%';document.getElementById('lifeTotal').textContent=lifeTotal.toFixed(2)+'%';document.getElementById('lifeSealed').textContent=Math.floor(lifeSealed);const lifeRemain=Math.max(0,lifeMax-lifeSealed);document.getElementById('lifeRemain').textContent=Math.ceil(lifeRemain);document.getElementById('lifeFree').textContent=(lifeMax>0?Math.ceil(lifeRemain)/lifeMax*100:100).toFixed(2)+'%';const st=document.getElementById('status');st.className=total<=100?'ok':'bad';st.textContent=total<=100?'可以同时开启 4 个光环':'魔力不足，无法同时开启 4 个光环';document.getElementById('detail').innerHTML=detail}
+[...document.querySelectorAll('#maxMana,#maxLife,#gear,#passive,#other')].forEach(x=>x.addEventListener('input',calc));document.getElementById('path').addEventListener('change',()=>{render();calc()});document.getElementById('clear').onclick=()=>{auras.forEach(a=>a.supports=Array.from({length:3},()=>({name:'',level:20})));render();calc()};document.getElementById('reset').onclick=()=>{auras[0]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'加速冷却',level:20}]};auras[1]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'',level:20}]};auras[2]={on:true,base:50,supports:[{name:'节流',level:20},{name:'光环增幅',level:20},{name:'',level:20}]};auras[3]={on:true,base:50,supports:[{name:'节流',level:20},{name:'封印转化',level:20},{name:'',level:20}]};maxMana.value=1000;document.getElementById('maxLife').value=5000;gear.value=0;passive.value=22;other.value=0;document.getElementById('path').checked=true;render();calc()};render();calc();
+</script></body></html>
