@@ -20,19 +20,40 @@ jobs:
         run: |
           curl -L --fail --silent --show-error \
             "https://avatars.githubusercontent.com/u/339055766?v=4" \
-            -o favicon.png
+            -o avatar.jpg
 
-      - name: Verify image
+      - name: Remove only the connected white outer background
+        run: |
+          if command -v magick >/dev/null 2>&1; then
+            magick avatar.jpg \
+              -alpha on \
+              -fuzz 8% \
+              -fill none \
+              -draw "matte 0,0 floodfill" \
+              -draw "matte 459,0 floodfill" \
+              -draw "matte 0,459 floodfill" \
+              -draw "matte 459,459 floodfill" \
+              PNG32:favicon.png
+          else
+            convert avatar.jpg \
+              -alpha on \
+              -fuzz 8% \
+              -fill none \
+              -draw "matte 0,0 floodfill" \
+              -draw "matte 459,0 floodfill" \
+              -draw "matte 0,459 floodfill" \
+              -draw "matte 459,459 floodfill" \
+              PNG32:favicon.png
+          fi
+
+      - name: Verify favicon
         run: |
           file favicon.png
-          python - <<'PY'
-          from PIL import Image
-          im = Image.open("favicon.png")
-          print("size:", im.size)
-          print("mode:", im.mode)
-          if "A" in im.getbands():
-              print("alpha:", im.getchannel("A").getextrema())
-          PY
+          if command -v magick >/dev/null 2>&1; then
+            magick identify -format "size=%wx%h\nchannels=%[channels]\n" favicon.png
+          else
+            identify -format "size=%wx%h\nchannels=%[channels]\n" favicon.png
+          fi
 
       - name: Commit updated favicon
         run: |
@@ -42,6 +63,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Favicon unchanged."
           else
-            git commit -m "同步最新 GitHub 头像为 favicon"
+            git commit -m "将最新 GitHub 头像转换为透明 favicon"
             git push
           fi
