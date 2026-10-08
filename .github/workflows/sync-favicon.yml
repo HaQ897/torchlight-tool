@@ -22,38 +22,66 @@ jobs:
             "https://avatars.githubusercontent.com/u/339055766?v=4" \
             -o avatar.jpg
 
-      - name: Remove only the connected white outer background
+      - name: Convert outer white background to transparent
         run: |
-          if command -v magick >/dev/null 2>&1; then
-            magick avatar.jpg \
-              -alpha on \
-              -fuzz 8% \
-              -fill none \
-              -draw "matte 0,0 floodfill" \
-              -draw "matte 459,0 floodfill" \
-              -draw "matte 0,459 floodfill" \
-              -draw "matte 459,459 floodfill" \
-              PNG32:favicon.png
-          else
-            convert avatar.jpg \
-              -alpha on \
-              -fuzz 8% \
-              -fill none \
-              -draw "matte 0,0 floodfill" \
-              -draw "matte 459,0 floodfill" \
-              -draw "matte 0,459 floodfill" \
-              -draw "matte 459,459 floodfill" \
-              PNG32:favicon.png
-          fi
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          from collections import deque
+          from PIL import Image
+
+          src = Image.open("avatar.jpg").convert("RGBA")
+          w, h = src.size
+          px = src.load()
+
+          # GitHub's avatar CDN currently returns a 460x460 JPEG.
+          # Keep the image at exactly the same size and remove only
+          # near-white pixels that are connected to the outer border.
+          FUZZ = 20
+          seen = bytearray(w * h)
+          q = deque()
+
+          def near_white(x, y):
+              r, g, b, _ = px[x, y]
+              return r >= 255 - FUZZ and g >= 255 - FUZZ and b >= 255 - FUZZ
+
+          def seed(x, y):
+              i = y * w + x
+              if not seen[i] and near_white(x, y):
+                  seen[i] = 1
+                  q.append((x, y))
+
+          for x in range(w):
+              seed(x, 0)
+              seed(x, h - 1)
+          for y in range(h):
+              seed(0, y)
+              seed(w - 1, y)
+
+          while q:
+              x, y = q.popleft()
+              r, g, b, _ = px[x, y]
+              px[x, y] = (r, g, b, 0)
+              for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                  if 0 <= nx < w and 0 <= ny < h:
+                      i = ny * w + nx
+                      if not seen[i] and near_white(nx, ny):
+                          seen[i] = 1
+                          q.append((nx, ny))
+
+          src.save("favicon.png", "PNG", optimize=True)
+          print(f"saved {w}x{h} PNG with transparent outer background")
+          PY
 
       - name: Verify favicon
         run: |
           file favicon.png
-          if command -v magick >/dev/null 2>&1; then
-            magick identify -format "size=%wx%h\nchannels=%[channels]\n" favicon.png
-          else
-            identify -format "size=%wx%h\nchannels=%[channels]\n" favicon.png
-          fi
+          python3 - <<'PY'
+          from PIL import Image
+          im = Image.open("favicon.png")
+          print("size:", im.size)
+          print("mode:", im.mode)
+          print("alpha extrema:", im.getchannel("A").getextrema())
+          PY
 
       - name: Commit updated favicon
         run: |
