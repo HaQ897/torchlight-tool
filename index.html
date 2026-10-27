@@ -162,7 +162,12 @@ const iconUrls={
   "精密 人多势众":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_PeopleStrongSpecial_Icon_128.webp",
   "精密 节流":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_EnlightenmentSpecial_128.webp",
   "加速冷却":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_CooldownReduce_128.webp",
-  "范围扩大":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_IncreasedArea_128.webp"
+  "范围扩大":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_IncreasedArea_128.webp",
+  "贯注增效":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillEnhanceDamageIcon128.webp",
+  "精密 贯注增效":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillEnhanceDamageSpecialIcon128.webp",
+  "魔灵之友":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UISkillFriendsOfSpiritMagusIcon128.webp",
+  "精密 魔灵之友":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UISkillFriendsOfSpiritMagusSpecialIcon128.webp",
+  "精密 超能共生":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UISkillIconSupportSysmbiosisSpecialIcon128.webp"
 };
 function iconFallback(name){
   const ch=(name||'无').replace(/\s/g,'').slice(0,1)||'—';
@@ -174,8 +179,8 @@ function setSkillIcon(img,name){
   img.alt=name?displayName(name)+'图标':'无';
   img.onerror=()=>{img.onerror=null;img.src=iconFallback(name)};
 }
-const relevant=["节流","光环增幅","封印转化","精密 封印转化","精密 无私","精密 自私","精密 多则能成","精密 律己","精密 全神贯注","精密 遇强则强","精密 人多势众","精密 节流","加速冷却","范围扩大"];
-const skillDescriptions={"节流":"辅助被动技能。\n被辅助技能 +0.5% 魔力封印补偿（随等级成长）。","光环增幅":"辅助光环技能。\n被辅助技能 +5.25% 光环效果（随等级成长）。\n被辅助技能 +100% 技能范围。","封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -70% 魔力封印补偿（随等级成长）。","精密 封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -60% 魔力封印补偿（随等级成长）。","精密 无私":"辅助光环技能。\n额外：-90% 受到的被辅助技能的光环效果。\n被辅助技能 +22.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 自私":"辅助光环技能。\n被辅助技能无法对友军生效。\n被辅助技能 +20.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 多则能成":"辅助光环技能。\n自身每受 1 个光环影响，被辅助技能 +4.1% 光环效果，上限 5 层（随等级成长）。","精密 律己":"辅助光环技能。\n被辅助技能 +35% 魔力封印补偿。\n额外：被辅助技能 -20.9% 光环效果（随等级成长）。","精密 全神贯注":"辅助光环技能。\n自身受不超过 2 个光环影响时，被辅助技能 +25.5% 光环效果（随等级成长）。","精密 遇强则强":"辅助光环技能。\n10 米内存在劲敌时，被辅助技能 +20.5% 光环效果（随等级成长）。\n额外：否则 -15% 光环效果。\n被辅助技能 -15% 魔力封印补偿。","精密 人多势众":"辅助光环技能。\n被辅助技能每影响 1 名友军，+3.1% 光环效果，上限 7 层（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 节流":"辅助被动技能。\n被辅助技能 +15.5% 魔力封印补偿（随等级成长）。","加速冷却":"辅助任意技能。\n魔力消耗倍率：110%。\n被辅助技能 +13% 冷却回复速度（随等级成长）。","范围扩大":"辅助范围技能。\n魔力消耗倍率：110%。\n被辅助技能 +20% 技能范围。\n额外：被辅助技能 +16% 伤害（随等级成长）。"};
+const relevant=["节流","光环增幅","封印转化","精密 封印转化","精密 无私","精密 自私","精密 多则能成","精密 律己","精密 全神贯注","精密 遇强则强","精密 人多势众","精密 节流","加速冷却","范围扩大","贯注增效","精密 贯注增效","魔灵之友","精密 魔灵之友","精密 超能共生"];
+const skillDescriptions={"节流":"辅助被动技能。\n被辅助技能 +0.5% 魔力封印补偿（随等级成长）。","光环增幅":"辅助光环技能。\n被辅助技能 +5.25% 光环效果（随等级成长）。\n被辅助技能 +100% 技能范围。","封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -70% 魔力封印补偿（随等级成长）。","精密 封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -60% 魔力封印补偿（随等级成长）。","精密 无私":"辅助光环技能。\n额外：-90% 受到的被辅助技能的光环效果。\n被辅助技能 +22.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 自私":"辅助光环技能。\n被辅助技能无法对友军生效。\n被辅助技能 +20.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 多则能成":"辅助光环技能。\n自身每受 1 个光环影响，被辅助技能 +4.1% 光环效果，上限 5 层（随等级成长）。","精密 律己":"辅助光环技能。\n被辅助技能 +35% 魔力封印补偿。\n额外：被辅助技能 -20.9% 光环效果（随等级成长）。","精密 全神贯注":"辅助光环技能。\n自身受不超过 2 个光环影响时，被辅助技能 +25.5% 光环效果（随等级成长）。","精密 遇强则强":"辅助光环技能。\n10 米内存在劲敌时，被辅助技能 +20.5% 光环效果（随等级成长）。\n额外：否则 -15% 光环效果。\n被辅助技能 -15% 魔力封印补偿。","精密 人多势众":"辅助光环技能。\n被辅助技能每影响 1 名友军，+3.1% 光环效果，上限 7 层（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 节流":"辅助被动技能。\n被辅助技能 +15.5% 魔力封印补偿（随等级成长）。","加速冷却":"辅助任意技能。\n魔力消耗倍率：110%。\n被辅助技能 +13% 冷却回复速度（随等级成长）。","范围扩大":"辅助范围技能。\n魔力消耗倍率：110%。\n被辅助技能 +20% 技能范围。\n额外：被辅助技能 +16% 伤害（随等级成长）。","贯注增效":"辅助贯注技能。\n被辅助技能 +55% 增益效果。\n被辅助技能 -30% 魔力封印补偿。","精密 贯注增效":"辅助贯注技能。\n被辅助技能 +55% 增益效果。\n被辅助技能 -18% 魔力封印补偿。","魔灵之友":"辅助魔灵技能。\n同时拥有至少 2 种魔灵时，被辅助技能 +55% 提供的魔灵之源效果。\n被辅助技能 -30% 魔力封印补偿。","精密 魔灵之友":"辅助魔灵技能。\n同时拥有至少 3 种魔灵时，被辅助技能 +128% 提供的魔灵之源效果。\n被辅助技能 -30% 魔力封印补偿。","精密 超能共生":"辅助魔灵技能。\n被辅助技能 +52% 提供的魔灵之源效果。\n被辅助技能 -20% 魔力封印补偿。"};
 function effectiveLevel(baseLv,path){
   const base=Math.max(1,Math.min(40,Number(baseLv)||1));
   return Math.max(1,Math.min(40,base+(path?4:0)));
@@ -241,6 +246,26 @@ function skillTooltipText(name,baseLv,path){
       lines.push('魔力消耗倍率：110%');
       lines.push(`冷却回复速度：+${n1(13+.5*(lv-1))}%`);
       break;
+    case '贯注增效':
+      lines.push('魔力封印补偿：-30%');
+      lines.push('增益效果：+55%');
+      break;
+    case '精密 贯注增效':
+      lines.push('魔力封印补偿：-18%');
+      lines.push('增益效果：+55%');
+      break;
+    case '魔灵之友':
+      lines.push('魔力封印补偿：-30%');
+      lines.push('至少拥有 2 种魔灵时，魔灵之源效果：+55%');
+      break;
+    case '精密 魔灵之友':
+      lines.push('魔力封印补偿：-30%');
+      lines.push('至少拥有 3 种魔灵时，魔灵之源效果：+128%');
+      break;
+    case '精密 超能共生':
+      lines.push('魔力封印补偿：-20%');
+      lines.push('魔灵之源效果：+52%');
+      break;
     case '范围扩大':
       lines.push('魔力消耗倍率：110%');
       lines.push('技能范围：+20%（固定）');
@@ -278,7 +303,7 @@ const auras=[
   {on:true,base:50,supports:[{name:"节流",level:20},{name:"光环增幅",level:20},{name:"",level:20}]},
   {on:true,base:50,supports:[{name:"节流",level:20},{name:"封印转化",level:20},{name:"",level:20}]}
 ];
-function levelData(name,lv){lv=Math.max(1,Number(lv)||1);switch(name){case"节流":return{comp:.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 节流":return{comp:15+.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 律己":return{comp:35,extraComp:0,life:false,conv:false,manaMult:1};case"精密 自私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 无私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 遇强则强":return{comp:-15,extraComp:0,life:false,conv:false,manaMult:1};case"精密 人多势众":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"封印转化":return{comp:0,extraComp:lv<=20?-70+.25*(lv-1):-65+.75*(lv-21),life:true,conv:true,manaMult:1};case"精密 封印转化":return{comp:0,extraComp:lv<=20?-60+.5*(lv-1):-50+.25*(lv-21),life:true,conv:true,manaMult:1};case"加速冷却":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};case"范围扩大":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};default:return{comp:0,extraComp:0,life:false,conv:false,manaMult:1}}}
+function levelData(name,lv){lv=Math.max(1,Number(lv)||1);switch(name){case"节流":return{comp:.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 节流":return{comp:15+.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 律己":return{comp:35,extraComp:0,life:false,conv:false,manaMult:1};case"精密 自私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 无私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 遇强则强":return{comp:-15,extraComp:0,life:false,conv:false,manaMult:1};case"精密 人多势众":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"封印转化":return{comp:0,extraComp:lv<=20?-70+.25*(lv-1):-65+.75*(lv-21),life:true,conv:true,manaMult:1};case"精密 封印转化":return{comp:0,extraComp:lv<=20?-60+.5*(lv-1):-50+.25*(lv-21),life:true,conv:true,manaMult:1};case"加速冷却":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};case"范围扩大":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};case"贯注增效":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 贯注增效":return{comp:-18,extraComp:0,life:false,conv:false,manaMult:1};case"魔灵之友":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 魔灵之友":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 超能共生":return{comp:-20,extraComp:0,life:false,conv:false,manaMult:1};default:return{comp:0,extraComp:0,life:false,conv:false,manaMult:1}}}
 function auraEffect(name,lv){switch(name){case"光环增幅":return 5.25+.25*(lv-1);case"精密 律己":return -20.9+.1*(lv-1);case"精密 自私":return 20.2+.2*(lv-1);case"精密 无私":return 22.2+.2*(lv-1);case"精密 全神贯注":return 25.5+.5*(lv-1);case"精密 遇强则强":return 20.5+.5*(lv-1);default:return 0}}
 function displayName(n){return n.replace(/ /g,"·")}
 function escapeHtml(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
@@ -996,6 +1021,7 @@ function decodeCompactConfigV2(code){
 }
 
 function decodeCompactConfig(code){
+  if(code.startsWith('u')) return decodeShareConfigV7(code);
   if(code.startsWith('v')) return decodeShareConfigV6(code);
   if(code.startsWith('w')) return decodeShareConfigV5(code);
   if(code.startsWith('x')) return decodeCompactConfigV4(code);
@@ -1034,42 +1060,90 @@ function shareFieldDiff(obj,field){
   if(Array.isArray(av)||Array.isArray(dv)) return av[0]!==dv[0]||av[1]!==dv[1];
   return av!==dv;
 }
-function encodeShareConfigV6(obj){
+function encodeShareConfigV7(obj){
   const changed=[];
   for(let field=0;field<34;field++) if(shareFieldDiff(obj,field)) changed.push(field);
-  // 5 bit记录数。超过 31 个变化时交给 v5。
-  if(changed.length>31) return null;
-  if(changed.length===0) return 'v';
-
+  if(changed.length>31) return encodeShareConfigV7Full(obj);
+  if(changed.length===0) return 'u';
   const bits=[];
   sharePush(bits,changed.length,5);
   const signedFields=new Set([2,3,4]);
   for(const field of changed){
     sharePush(bits,field,6);
     const value=shareFieldValue(obj,field);
-    if(field===5){
-      sharePush(bits,value,1);
-    }else if(field===0||field===1){
-      sharePush(bits,value,16);
-    }else if(signedFields.has(field)){
+    if(field===5) sharePush(bits,value,1);
+    else if(field===0||field===1) sharePush(bits,value,16);
+    else if(signedFields.has(field)){
       const z=value<0?-value*2-1:value*2;
       shareVarPush(bits,z);
     }else if(field>=6){
       const sub=(field-6)%7;
-      if(sub===0){
-        sharePush(bits,value,1);
-      }else if(sub===1){
-        sharePush(bits,value,10);
-      }else{
-        sharePush(bits,value[0]===-1?15:value[0],4);
+      if(sub===0) sharePush(bits,value,1);
+      else if(sub===1) sharePush(bits,value,10);
+      else{
+        sharePush(bits,value[0]===-1?31:value[0],5);
         sharePush(bits,value[0]===-1?0:value[1],6);
       }
     }
   }
-  const code='v'+shareBitsToBase64Url(bits);
-  const old='w'+shareBitsToBase64Url(shareConfigV5Bits(obj));
-  return code.length<=old.length?code:old;
+  return 'u'+shareBitsToBase64Url(bits);
 }
+function encodeShareConfigV7Full(obj){
+  const bits=[];
+  sharePush(bits,31,5);
+  for(let field=0;field<34;field++){
+    sharePush(bits,field,6);
+    const value=shareFieldValue(obj,field);
+    if(field===5) sharePush(bits,value,1);
+    else if(field===0||field===1) sharePush(bits,value,16);
+    else if(field===2||field===3||field===4){
+      const z=value<0?-value*2-1:value*2;
+      shareVarPush(bits,z);
+    }else if(field>=6){
+      const sub=(field-6)%7;
+      if(sub===0) sharePush(bits,value,1);
+      else if(sub===1) sharePush(bits,value,10);
+      else{
+        sharePush(bits,value[0]===-1?31:value[0],5);
+        sharePush(bits,value[0]===-1?0:value[1],6);
+      }
+    }
+  }
+  return 'u'+shareBitsToBase64Url(bits);
+}
+function decodeShareConfigV7(code){
+  if(code==='u') return JSON.parse(JSON.stringify(SHARE_DEFAULTS));
+  if(!code.startsWith('u')) throw new Error('不是 u 版配置链接');
+  const bits=shareBase64UrlToBits(code.slice(1)), ref={pos:0};
+  const count=shareRead(bits,ref,5);
+  if(count>31) throw new Error('配置项目数量异常');
+  const data=JSON.parse(JSON.stringify(SHARE_DEFAULTS));
+  for(let n=0;n<count;n++){
+    const field=shareRead(bits,ref,6);
+    if(field>=34) throw new Error('配置字段异常');
+    if(field===0) data.maxMana=shareRead(bits,ref,16);
+    else if(field===1) data.maxLife=shareRead(bits,ref,16);
+    else if(field===2) data.gear=shareSignedRead(bits,ref)/10;
+    else if(field===3) data.passive=shareSignedRead(bits,ref)/10;
+    else if(field===4) data.other=shareSignedRead(bits,ref)/10;
+    else if(field===5) data.path=!!shareRead(bits,ref,1);
+    else{
+      const k=field-6, auraIndex=Math.floor(k/7), sub=k%7;
+      if(sub===0) data.auras[auraIndex].on=!!shareRead(bits,ref,1);
+      else if(sub===1) data.auras[auraIndex].base=shareRead(bits,ref,10)/10;
+      else{
+        const id=shareRead(bits,ref,5), level=shareRead(bits,ref,6)+1;
+        data.auras[auraIndex].supports=Array.isArray(data.auras[auraIndex].supports)?data.auras[auraIndex].supports:[];
+        while(data.auras[auraIndex].supports.length<sub-1) data.auras[auraIndex].supports.push({name:'',level:1});
+        data.auras[auraIndex].supports[sub-2]=id===31?{name:'',level:1}:{name:relevant[id]||'',level};
+        data.auras[auraIndex].supports=data.auras[auraIndex].supports.slice(0,Math.max(data.auras[auraIndex].supports.length,sub-1)).filter((x,i)=>i<=4);
+        while(data.auras[auraIndex].supports.length&&data.auras[auraIndex].supports[data.auras[auraIndex].supports.length-1].name==='') data.auras[auraIndex].supports.pop();
+      }
+    }
+  }
+  return data;
+}
+
 function shareConfigV5Bits(obj){
   const bits=[];
   sharePush(bits,SHARE_VERSION,3);
@@ -1210,7 +1284,7 @@ function loadLocalConfig(){
 function loadConfigFromUrl(){
   const params=new URL(location.href).searchParams;
   const hash=new URL(location.href).hash;
-  const compact=params.get('c')||(hash.startsWith('#v')||hash.startsWith('#w')||hash.startsWith('#y')||hash.startsWith('#z')?hash.slice(1):'')||(hash.startsWith('#c=')?hash.slice(3):'');
+  const compact=params.get('c')||(hash.startsWith('#u')||hash.startsWith('#v')||hash.startsWith('#w')||hash.startsWith('#y')||hash.startsWith('#z')?hash.slice(1):'')||(hash.startsWith('#c=')?hash.slice(3):'');
   const legacy=params.get('config');
   const code=compact||legacy;
   if(!code) return false;
@@ -1226,7 +1300,7 @@ async function copyConfigLink(){
   const url=new URL(location.href);
   url.searchParams.delete('config');
   url.searchParams.delete('c');
-  url.hash=encodeShareConfigV6(getConfigState());
+  url.hash=encodeShareConfigV7(getConfigState());
   const link=url.toString();
   const btn=document.getElementById('copyConfig');
   try{
