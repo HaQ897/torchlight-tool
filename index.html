@@ -1090,7 +1090,7 @@ function encodeShareConfigV7(obj){
 }
 function encodeShareConfigV7Full(obj){
   const bits=[];
-  sharePush(bits,31,5);
+  sharePush(bits,0,5);
   for(let field=0;field<34;field++){
     sharePush(bits,field,6);
     const value=shareFieldValue(obj,field);
@@ -1115,8 +1115,10 @@ function decodeShareConfigV7(code){
   if(code==='u') return JSON.parse(JSON.stringify(SHARE_DEFAULTS));
   if(!code.startsWith('u')) throw new Error('不是 u 版配置链接');
   const bits=shareBase64UrlToBits(code.slice(1)), ref={pos:0};
-  const count=shareRead(bits,ref,5);
+  let count=shareRead(bits,ref,5);
   if(count>31) throw new Error('配置项目数量异常');
+  const full=count===0;
+  if(full) count=34;
   const data=JSON.parse(JSON.stringify(SHARE_DEFAULTS));
   for(let n=0;n<count;n++){
     const field=shareRead(bits,ref,6);
