@@ -163,12 +163,13 @@ const iconUrls={
   "精密 节流":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_EnlightenmentSpecial_128.webp",
   "加速冷却":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_CooldownReduce_128.webp",
   "范围扩大":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/Icon_Support_IncreasedArea_128.webp",
-  "贯注增效":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillEnhanceDamageIcon128.webp",
-  "精密 贯注增效":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillEnhanceDamageSpecialIcon128.webp",
-  "魔灵之友":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UISkillFriendsOfSpiritMagusIcon128.webp",
-  "精密 魔灵之友":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UISkillFriendsOfSpiritMagusSpecialIcon128.webp",
-  "精密 超能共生":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UISkillIconSupportSysmbiosisSpecialIcon128.webp",
-  "精密 保护力场":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_SkillFieldOfShieldSpecialIcon128.webp"
+  "贯注增效":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_EnhanceDamage_Icon_128.webp",
+  "精密 贯注增效":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_EnhanceDamageSpecial_Icon_128.webp",
+  "魔灵之友":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_FriendsOfSpiritMagus_Icon_128.webp",
+  "精密 魔灵之友":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_Skill_FriendsOfSpiritMagusSpecial_Icon_128.webp",
+  "精密 超能共生":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Support_SysmbiosisSpecial_Icon_128.webp",
+  "精密 保护力场":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Skill_FieldOfShieldSpecial_Icon_128.webp",
+  "保护力场":"https://cdn.tlidb.com/UI/Textures/Common/Icon/Skill/CommonSkill/128/UI_SkillIcon_Skill_FieldOfShield_Icon_128.webp"
 };
 function iconFallback(name){
   const ch=(name||'无').replace(/\s/g,'').slice(0,1)||'—';
@@ -180,8 +181,8 @@ function setSkillIcon(img,name){
   img.alt=name?displayName(name)+'图标':'无';
   img.onerror=()=>{img.onerror=null;img.src=iconFallback(name)};
 }
-const relevant=["节流","光环增幅","封印转化","精密 封印转化","精密 无私","精密 自私","精密 多则能成","精密 律己","精密 全神贯注","精密 遇强则强","精密 人多势众","精密 节流","加速冷却","范围扩大","贯注增效","精密 贯注增效","魔灵之友","精密 魔灵之友","精密 超能共生","精密 保护力场"];
-const skillDescriptions={"节流":"辅助被动技能。\n被辅助技能 +0.5% 魔力封印补偿（随等级成长）。","光环增幅":"辅助光环技能。\n被辅助技能 +5.25% 光环效果（随等级成长）。\n被辅助技能 +100% 技能范围。","封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -70% 魔力封印补偿（随等级成长）。","精密 封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -60% 魔力封印补偿（随等级成长）。","精密 无私":"辅助光环技能。\n额外：-90% 受到的被辅助技能的光环效果。\n被辅助技能 +22.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 自私":"辅助光环技能。\n被辅助技能无法对友军生效。\n被辅助技能 +20.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 多则能成":"辅助光环技能。\n自身每受 1 个光环影响，被辅助技能 +4.1% 光环效果，上限 5 层（随等级成长）。","精密 律己":"辅助光环技能。\n被辅助技能 +35% 魔力封印补偿。\n额外：被辅助技能 -20.9% 光环效果（随等级成长）。","精密 全神贯注":"辅助光环技能。\n自身受不超过 2 个光环影响时，被辅助技能 +25.5% 光环效果（随等级成长）。","精密 遇强则强":"辅助光环技能。\n10 米内存在劲敌时，被辅助技能 +20.5% 光环效果（随等级成长）。\n额外：否则 -15% 光环效果。\n被辅助技能 -15% 魔力封印补偿。","精密 人多势众":"辅助光环技能。\n被辅助技能每影响 1 名友军，+3.1% 光环效果，上限 7 层（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 节流":"辅助被动技能。\n被辅助技能 +15.5% 魔力封印补偿（随等级成长）。","加速冷却":"辅助任意技能。\n魔力消耗倍率：110%。\n被辅助技能 +13% 冷却回复速度（随等级成长）。","范围扩大":"辅助范围技能。\n魔力消耗倍率：110%。\n被辅助技能 +20% 技能范围。\n额外：被辅助技能 +16% 伤害（随等级成长）。","贯注增效":"辅助贯注技能。\n被辅助技能 +55% 增益效果。\n被辅助技能 -30% 魔力封印补偿。","精密 贯注增效":"辅助贯注技能。\n被辅助技能 +55% 增益效果。\n被辅助技能 -18% 魔力封印补偿。","魔灵之友":"辅助魔灵技能。\n同时拥有至少 2 种魔灵时，被辅助技能 +55% 提供的魔灵之源效果。\n被辅助技能 -30% 魔力封印补偿。","精密 魔灵之友":"辅助魔灵技能。\n同时拥有至少 3 种魔灵时，被辅助技能 +128% 提供的魔灵之源效果。\n被辅助技能 -30% 魔力封印补偿。","精密 超能共生":"辅助魔灵技能。\n被辅助技能 +52% 提供的魔灵之源效果。\n被辅助技能 -20% 魔力封印补偿。","精密 保护力场":"辅助魔灵技能。\n被辅助技能 -30% 魔力封印补偿。"};
+const relevant=["节流","光环增幅","封印转化","精密 封印转化","精密 无私","精密 自私","精密 多则能成","精密 律己","精密 全神贯注","精密 遇强则强","精密 人多势众","精密 节流","加速冷却","范围扩大","贯注增效","精密 贯注增效","魔灵之友","精密 魔灵之友","精密 超能共生","精密 保护力场","保护力场"];
+const skillDescriptions={"节流":"辅助被动技能。\n被辅助技能 +0.5% 魔力封印补偿（随等级成长）。","光环增幅":"辅助光环技能。\n被辅助技能 +5.25% 光环效果（随等级成长）。\n被辅助技能 +100% 技能范围。","封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -70% 魔力封印补偿（随等级成长）。","精密 封印转化":"辅助被动技能。\n被辅助技能的魔力封印被替代为生命封印。\n额外：被辅助技能 -60% 魔力封印补偿（随等级成长）。","精密 无私":"辅助光环技能。\n额外：-90% 受到的被辅助技能的光环效果。\n被辅助技能 +22.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 自私":"辅助光环技能。\n被辅助技能无法对友军生效。\n被辅助技能 +20.2% 光环效果（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 多则能成":"辅助光环技能。\n自身每受 1 个光环影响，被辅助技能 +4.1% 光环效果，上限 5 层（随等级成长）。","精密 律己":"辅助光环技能。\n被辅助技能 +35% 魔力封印补偿。\n额外：被辅助技能 -20.9% 光环效果（随等级成长）。","精密 全神贯注":"辅助光环技能。\n自身受不超过 2 个光环影响时，被辅助技能 +25.5% 光环效果（随等级成长）。","精密 遇强则强":"辅助光环技能。\n10 米内存在劲敌时，被辅助技能 +20.5% 光环效果（随等级成长）。\n额外：否则 -15% 光环效果。\n被辅助技能 -15% 魔力封印补偿。","精密 人多势众":"辅助光环技能。\n被辅助技能每影响 1 名友军，+3.1% 光环效果，上限 7 层（随等级成长）。\n被辅助技能 -12% 魔力封印补偿。","精密 节流":"辅助被动技能。\n被辅助技能 +15.5% 魔力封印补偿（随等级成长）。","加速冷却":"辅助任意技能。\n魔力消耗倍率：110%。\n被辅助技能 +13% 冷却回复速度（随等级成长）。","范围扩大":"辅助范围技能。\n魔力消耗倍率：110%。\n被辅助技能 +20% 技能范围。\n额外：被辅助技能 +16% 伤害（随等级成长）。","贯注增效":"辅助贯注技能。\n被辅助技能 +55% 增益效果。\n被辅助技能 -30% 魔力封印补偿。","精密 贯注增效":"辅助贯注技能。\n被辅助技能 +55% 增益效果。\n被辅助技能 -18% 魔力封印补偿。","魔灵之友":"辅助魔灵技能。\n同时拥有至少 2 种魔灵时，被辅助技能 +55% 提供的魔灵之源效果。\n被辅助技能 -30% 魔力封印补偿。","精密 魔灵之友":"辅助魔灵技能。\n同时拥有至少 3 种魔灵时，被辅助技能 +128% 提供的魔灵之源效果。\n被辅助技能 -30% 魔力封印补偿。","精密 超能共生":"辅助魔灵技能。\n被辅助技能 +52% 提供的魔灵之源效果。\n被辅助技能 -20% 魔力封印补偿。","精密 保护力场":"辅助魔灵技能。\n被辅助技能 -30% 魔力封印补偿。","保护力场":"辅助魔灵技能。\n被辅助技能 -30% 魔力封印补偿。"};
 function effectiveLevel(baseLv,path){
   const base=Math.max(1,Math.min(40,Number(baseLv)||1));
   return Math.max(1,Math.min(40,base+(path?4:0)));
@@ -270,6 +271,9 @@ function skillTooltipText(name,baseLv,path){
     case '精密 保护力场':
       lines.push('魔力封印补偿：-30%');
       break;
+    case '保护力场':
+      lines.push('魔力封印补偿：-30%');
+      break;
     case '范围扩大':
       lines.push('魔力消耗倍率：110%');
       lines.push('技能范围：+20%（固定）');
@@ -307,7 +311,7 @@ const auras=[
   {on:true,base:50,supports:[{name:"节流",level:20},{name:"光环增幅",level:20},{name:"",level:20}]},
   {on:true,base:50,supports:[{name:"节流",level:20},{name:"封印转化",level:20},{name:"",level:20}]}
 ];
-function levelData(name,lv){lv=Math.max(1,Number(lv)||1);switch(name){case"节流":return{comp:.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 节流":return{comp:15+.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 律己":return{comp:35,extraComp:0,life:false,conv:false,manaMult:1};case"精密 自私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 无私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 遇强则强":return{comp:-15,extraComp:0,life:false,conv:false,manaMult:1};case"精密 人多势众":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"封印转化":return{comp:0,extraComp:lv<=20?-70+.25*(lv-1):-65+.75*(lv-21),life:true,conv:true,manaMult:1};case"精密 封印转化":return{comp:0,extraComp:lv<=20?-60+.5*(lv-1):-50+.25*(lv-21),life:true,conv:true,manaMult:1};case"加速冷却":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};case"范围扩大":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};case"贯注增效":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 贯注增效":return{comp:-18,extraComp:0,life:false,conv:false,manaMult:1};case"魔灵之友":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 魔灵之友":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 超能共生":return{comp:-20,extraComp:0,life:false,conv:false,manaMult:1};case"精密 保护力场":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};default:return{comp:0,extraComp:0,life:false,conv:false,manaMult:1}}}
+function levelData(name,lv){lv=Math.max(1,Number(lv)||1);switch(name){case"节流":return{comp:.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 节流":return{comp:15+.5*lv,extraComp:0,life:false,conv:false,manaMult:1};case"精密 律己":return{comp:35,extraComp:0,life:false,conv:false,manaMult:1};case"精密 自私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 无私":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"精密 遇强则强":return{comp:-15,extraComp:0,life:false,conv:false,manaMult:1};case"精密 人多势众":return{comp:-12,extraComp:0,life:false,conv:false,manaMult:1};case"封印转化":return{comp:0,extraComp:lv<=20?-70+.25*(lv-1):-65+.75*(lv-21),life:true,conv:true,manaMult:1};case"精密 封印转化":return{comp:0,extraComp:lv<=20?-60+.5*(lv-1):-50+.25*(lv-21),life:true,conv:true,manaMult:1};case"加速冷却":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};case"范围扩大":return{comp:0,extraComp:0,life:false,conv:false,manaMult:1.10};case"贯注增效":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 贯注增效":return{comp:-18,extraComp:0,life:false,conv:false,manaMult:1};case"魔灵之友":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 魔灵之友":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"精密 超能共生":return{comp:-20,extraComp:0,life:false,conv:false,manaMult:1};case"精密 保护力场":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};case"保护力场":return{comp:-30,extraComp:0,life:false,conv:false,manaMult:1};default:return{comp:0,extraComp:0,life:false,conv:false,manaMult:1}}}
 function auraEffect(name,lv){switch(name){case"光环增幅":return 5.25+.25*(lv-1);case"精密 律己":return -20.9+.1*(lv-1);case"精密 自私":return 20.2+.2*(lv-1);case"精密 无私":return 22.2+.2*(lv-1);case"精密 全神贯注":return 25.5+.5*(lv-1);case"精密 遇强则强":return 20.5+.5*(lv-1);default:return 0}}
 function displayName(n){return n.replace(/ /g,"·")}
 function escapeHtml(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
